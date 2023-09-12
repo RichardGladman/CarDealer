@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "settingsframe.h"
+#include "newvehicleframe.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,5 +34,6 @@ private:
     Ui::MainWindow *ui;
 
     SettingsFrame *settingsFrame {nullptr};
+    NewVehicleFrame *newVehicleFrame {nullptr};
 };
 #endif // MAINWINDOW_H

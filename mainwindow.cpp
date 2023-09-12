@@ -48,9 +48,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    if (settingsFrame == nullptr) {
-        settingsFrame = new SettingsFrame(this);
-    }
+    settingsFrame = new SettingsFrame(this);
     setCentralWidget(settingsFrame);
 }
 
@@ -78,6 +76,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionAdd_New_Vehicle_triggered()
 {
-
+    newVehicleFrame = new NewVehicleFrame(this);
+    setCentralWidget(newVehicleFrame);
 }
 
