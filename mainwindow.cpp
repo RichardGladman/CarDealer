@@ -76,13 +76,6 @@ void MainWindow::on_actionExit_triggered()
 }
 
 
-void MainWindow::on_actionAdd_New_Vehicle_triggered()
-{
-    NewVehicleFrame *newVehicleFrame = new NewVehicleFrame(this);
-    setCentralWidget(newVehicleFrame);
-}
-
-
 void MainWindow::on_actionVehicles_triggered()
 {
     VehiclesFrame *vehiclesFrame = new VehiclesFrame;

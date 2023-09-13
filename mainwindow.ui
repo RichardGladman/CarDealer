@@ -42,7 +42,6 @@
     <property name="title">
      <string>Stock</string>
     </property>
-    <addaction name="actionAdd_New_Vehicle"/>
     <addaction name="actionVehicles"/>
    </widget>
    <addaction name="menuFile"/>
@@ -80,14 +79,6 @@
    </property>
    <property name="text">
     <string>Exit</string>
-   </property>
-  </action>
-  <action name="actionAdd_New_Vehicle">
-   <property name="icon">
-    <iconset theme="document-new"/>
-   </property>
-   <property name="text">
-    <string>Add New Vehicle</string>
    </property>
   </action>
   <action name="actionVehicles">

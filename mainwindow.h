@@ -25,8 +25,6 @@ private slots:
 
     void on_actionExit_triggered();
 
-    void on_actionAdd_New_Vehicle_triggered();
-
     void on_actionVehicles_triggered();
 
 private:
