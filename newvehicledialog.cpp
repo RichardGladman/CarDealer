@@ -1,5 +1,5 @@
-#include "newvehicleframe.h"
-#include "ui_newvehicleframe.h"
+#include "newvehicledialog.h"
+#include "ui_newvehicledialog.h"
 
 #include <QFile>
 #include <QFileDialog>
@@ -8,26 +8,19 @@
 #include <QSqlError>
 #include <QDebug>
 
-NewVehicleFrame::NewVehicleFrame(QWidget *parent) :
-    QFrame(parent),
-    ui(new Ui::NewVehicleFrame)
+NewVehicleDialog::NewVehicleDialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::NewVehicleDialog)
 {
     ui->setupUi(this);
 }
 
-NewVehicleFrame::~NewVehicleFrame()
+NewVehicleDialog::~NewVehicleDialog()
 {
     delete ui;
 }
 
-void NewVehicleFrame::on_pushButtonChoose_clicked()
-{
-    QString path = QFileDialog::getOpenFileName(this, "Choose Vehicle Picture", QDir::currentPath(), "Picture Files (*.png *.jpg)");
-    ui->lineEditImage->setText(path);
-}
-
-
-void NewVehicleFrame::on_pushButtonSave_clicked()
+void NewVehicleDialog::on_pushButtonSave_clicked()
 {
     QByteArray pictureBytes;
 
@@ -83,9 +76,20 @@ void NewVehicleFrame::on_pushButtonSave_clicked()
         ui->comboBoxCurrency->setCurrentIndex(0);
     } else {
         QMessageBox::critical(this, "Error", "Vehicle not saved\n\n" + insertQuery.lastError().text());
-
-        qDebug() << insertQuery.lastQuery() << "\n";
         qDebug() << insertQuery.executedQuery();
     }
+}
+
+
+void NewVehicleDialog::on_pushButtonClose_clicked()
+{
+    this->close();
+}
+
+
+void NewVehicleDialog::on_pushButtonChoose_clicked()
+{
+    QString path = QFileDialog::getOpenFileName(this, "Choose Vehicle Picture", QDir::currentPath(), "Picture Files (*.png *.jpg)");
+    ui->lineEditImage->setText(path);
 }
 
