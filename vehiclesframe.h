@@ -20,6 +20,8 @@ private slots:
 
     void on_pushButtonEdit_clicked();
 
+    void on_pushButtonDelete_clicked();
+
 private:
     Ui::VehiclesFrame *ui;
 
