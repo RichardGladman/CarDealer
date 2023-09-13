@@ -8,6 +8,8 @@
 #include <QSettings>
 
 #include "settingsframe.h"
+#include "newvehicleframe.h"
+#include "vehiclesframe.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -48,7 +50,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    settingsFrame = new SettingsFrame(this);
+    SettingsFrame *settingsFrame = new SettingsFrame(this);
     setCentralWidget(settingsFrame);
 }
 
@@ -76,7 +78,14 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionAdd_New_Vehicle_triggered()
 {
-    newVehicleFrame = new NewVehicleFrame(this);
+    NewVehicleFrame *newVehicleFrame = new NewVehicleFrame(this);
     setCentralWidget(newVehicleFrame);
+}
+
+
+void MainWindow::on_actionVehicles_triggered()
+{
+    VehiclesFrame *vehiclesFrame = new VehiclesFrame;
+    setCentralWidget(vehiclesFrame);
 }
 

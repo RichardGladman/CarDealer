@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Car Dealer</string>
   </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
@@ -43,6 +43,7 @@
      <string>Stock</string>
     </property>
     <addaction name="actionAdd_New_Vehicle"/>
+    <addaction name="actionVehicles"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
@@ -89,7 +90,18 @@
     <string>Add New Vehicle</string>
    </property>
   </action>
+  <action name="actionVehicles">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/bentley.png</normaloff>:/images/bentley.png</iconset>
+   </property>
+   <property name="text">
+    <string>Vehicles</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -3,9 +3,6 @@
 
 #include <QMainWindow>
 
-#include "settingsframe.h"
-#include "newvehicleframe.h"
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -30,10 +27,9 @@ private slots:
 
     void on_actionAdd_New_Vehicle_triggered();
 
+    void on_actionVehicles_triggered();
+
 private:
     Ui::MainWindow *ui;
-
-    SettingsFrame *settingsFrame {nullptr};
-    NewVehicleFrame *newVehicleFrame {nullptr};
 };
 #endif // MAINWINDOW_H
