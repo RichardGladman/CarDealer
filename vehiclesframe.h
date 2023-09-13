@@ -15,6 +15,9 @@ public:
     explicit VehiclesFrame(QWidget *parent = nullptr);
     ~VehiclesFrame();
 
+private slots:
+    void on_pushButtonAdd_clicked();
+
 private:
     Ui::VehiclesFrame *ui;
 };

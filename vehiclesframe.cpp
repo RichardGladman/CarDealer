@@ -3,6 +3,8 @@
 
 #include <QSqlQueryModel>
 
+#include "newvehicledialog.h"
+
 VehiclesFrame::VehiclesFrame(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::VehiclesFrame)
@@ -25,3 +27,11 @@ VehiclesFrame::~VehiclesFrame()
 {
     delete ui;
 }
+
+void VehiclesFrame::on_pushButtonAdd_clicked()
+{
+    NewVehicleDialog *newVehicleDialog = new NewVehicleDialog;
+    newVehicleDialog->setWindowTitle("Add New Vehicle");
+    newVehicleDialog->exec();
+}
+

@@ -8,7 +8,6 @@
 #include <QSettings>
 
 #include "settingsframe.h"
-#include "newvehicleframe.h"
 #include "vehiclesframe.h"
 
 MainWindow::MainWindow(QWidget *parent)
