@@ -18,6 +18,8 @@ public:
 private slots:
     void on_pushButtonAdd_clicked();
 
+    void on_pushButtonEdit_clicked();
+
 private:
     Ui::VehiclesFrame *ui;
 

@@ -4,6 +4,7 @@
 #include <QSqlQueryModel>
 
 #include "newvehicledialog.h"
+#include "editvehicledialog.h"
 
 VehiclesFrame::VehiclesFrame(QWidget *parent) :
     QFrame(parent),
@@ -20,7 +21,7 @@ VehiclesFrame::~VehiclesFrame()
 
 void VehiclesFrame::on_pushButtonAdd_clicked()
 {
-    NewVehicleDialog *newVehicleDialog = new NewVehicleDialog;
+    NewVehicleDialog *newVehicleDialog = new NewVehicleDialog(this);
     newVehicleDialog->setWindowTitle("Add New Vehicle");
     newVehicleDialog->exec();
 
@@ -39,5 +40,16 @@ void VehiclesFrame::loadData()
     tableModel->setHeaderData(4, Qt::Horizontal, "Condition");
 
     ui->tableView->setModel(tableModel);
+}
+
+
+void VehiclesFrame::on_pushButtonEdit_clicked()
+{
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+
+    EditVehicleDialog *editVehicleDialog = new EditVehicleDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
+    editVehicleDialog->exec();
+
+    loadData();
 }
 
