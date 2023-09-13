@@ -28,6 +28,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vehiclesframe.h vehiclesframe.cpp vehiclesframe.ui
         resources.qrc
         newvehicledialog.h newvehicledialog.cpp newvehicledialog.ui
+
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET CarDealer APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -24,6 +24,7 @@ private slots:
 
 private:
     Ui::NewVehicleDialog *ui;
+
 };
 
 #endif // NEWVEHICLEDIALOG_H

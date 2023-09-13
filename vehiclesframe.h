@@ -20,6 +20,8 @@ private slots:
 
 private:
     Ui::VehiclesFrame *ui;
+
+    void loadData();
 };
 
 #endif // VEHICLESFRAME_H
