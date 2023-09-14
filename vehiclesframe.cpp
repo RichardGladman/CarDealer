@@ -4,6 +4,7 @@
 #include <QSqlQueryModel>
 #include <QSqlQuery>
 #include <QMessageBox>
+#include <QDebug>
 
 #include "newvehicledialog.h"
 #include "editvehicledialog.h"
@@ -98,10 +99,34 @@ void VehiclesFrame::on_tableView_doubleClicked(const QModelIndex &index)
     on_pushButtonView_clicked();
 }
 
+void VehiclesFrame::on_pushButtonSearch_clicked()
+{
+    searchFor = ui->lineEditSearchFor->text();
+    loadData();
+}
+
 void VehiclesFrame::loadData()
 {
+    QString target = "%" + searchFor + "%";
+
+    QString sql = "SELECT id, manufacturer, name, year_of_manufacture, vehicle_condition FROM vehicles";
+    if (searchFor != "") {
+        sql += " WHERE manufacturer LIKE ? OR name like ? or year_of_manufacture LIKE ? or vehicle_condition LIKE ?";
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(target);
+    query.addBindValue(target);
+    query.addBindValue(target);
+    query.addBindValue(target);
+
+    query.exec();
+
+    qDebug() << query.executedQuery();
+
     QSqlQueryModel *tableModel = new QSqlQueryModel;
-    tableModel->setQuery("SELECT id, manufacturer, name, year_of_manufacture, vehicle_condition FROM vehicles");
+    tableModel->setQuery(std::move(query));
 
     tableModel->setHeaderData(0, Qt::Horizontal, "Id");
     tableModel->setHeaderData(1, Qt::Horizontal, "Manufacturer");

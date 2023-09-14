@@ -26,8 +26,12 @@ private slots:
 
     void on_tableView_doubleClicked(const QModelIndex &index);
 
+    void on_pushButtonSearch_clicked();
+
 private:
     Ui::VehiclesFrame *ui;
+
+    QString searchFor;
 
     void loadData();
 };
