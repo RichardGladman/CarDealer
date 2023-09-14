@@ -7,6 +7,7 @@
 
 #include "newvehicledialog.h"
 #include "editvehicledialog.h"
+#include "viewvehicledialog.h"
 
 VehiclesFrame::VehiclesFrame(QWidget *parent) :
     QFrame(parent),
@@ -80,6 +81,18 @@ void VehiclesFrame::on_pushButtonDelete_clicked()
     }
 }
 
+
+void VehiclesFrame::on_pushButtonView_clicked()
+{
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+    ViewVehicleDialog *viewVehicleDialog = new ViewVehicleDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
+    viewVehicleDialog->exec();
+}
+
 void VehiclesFrame::loadData()
 {
     QSqlQueryModel *tableModel = new QSqlQueryModel;
@@ -93,4 +106,3 @@ void VehiclesFrame::loadData()
 
     ui->tableView->setModel(tableModel);
 }
-

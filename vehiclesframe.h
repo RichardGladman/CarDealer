@@ -22,6 +22,8 @@ private slots:
 
     void on_pushButtonDelete_clicked();
 
+    void on_pushButtonView_clicked();
+
 private:
     Ui::VehiclesFrame *ui;
 
