@@ -9,6 +9,7 @@
 
 #include "settingsframe.h"
 #include "vehiclesframe.h"
+#include "sellerframe.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -77,7 +78,14 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionVehicles_triggered()
 {
-    VehiclesFrame *vehiclesFrame = new VehiclesFrame;
+    VehiclesFrame *vehiclesFrame = new VehiclesFrame(this);
     setCentralWidget(vehiclesFrame);
+}
+
+
+void MainWindow::on_actionSellers_triggered()
+{
+    SellerFrame *sellerFrame = new SellerFrame(this);
+    setCentralWidget(sellerFrame);
 }
 

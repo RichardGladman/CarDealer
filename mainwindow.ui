@@ -40,9 +40,10 @@
    </widget>
    <widget class="QMenu" name="menuStock">
     <property name="title">
-     <string>Stock</string>
+     <string>Data Entry</string>
     </property>
     <addaction name="actionVehicles"/>
+    <addaction name="actionSellers"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
@@ -51,7 +52,8 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="preferences-system"/>
+    <iconset theme="preferences-system">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -59,7 +61,8 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about"/>
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -67,7 +70,8 @@
   </action>
   <action name="actionAbout_Qt">
    <property name="icon">
-    <iconset theme="help-about"/>
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>About Qt</string>
@@ -75,7 +79,8 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset theme="application-exit"/>
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
    </property>
    <property name="text">
     <string>Exit</string>
@@ -88,6 +93,15 @@
    </property>
    <property name="text">
     <string>Vehicles</string>
+   </property>
+  </action>
+  <action name="actionSellers">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/team-member.png</normaloff>:/images/team-member.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sellers</string>
    </property>
   </action>
  </widget>

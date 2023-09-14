@@ -27,6 +27,8 @@ private slots:
 
     void on_actionVehicles_triggered();
 
+    void on_actionSellers_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
