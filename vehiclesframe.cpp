@@ -34,6 +34,9 @@ void VehiclesFrame::on_pushButtonAdd_clicked()
 void VehiclesFrame::on_pushButtonEdit_clicked()
 {
     QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
 
     EditVehicleDialog *editVehicleDialog = new EditVehicleDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
     editVehicleDialog->exec();
@@ -44,6 +47,11 @@ void VehiclesFrame::on_pushButtonEdit_clicked()
 
 void VehiclesFrame::on_pushButtonDelete_clicked()
 {
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
     QMessageBox *msgbox = new QMessageBox(this);
     msgbox->setWindowTitle("Question");
     msgbox->setIcon(QMessageBox::Question);
@@ -58,8 +66,6 @@ void VehiclesFrame::on_pushButtonDelete_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
-
         QSqlQuery deleteQuery;
         deleteQuery.prepare("DELETE FROM vehicles WHERE id=?");
         deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
