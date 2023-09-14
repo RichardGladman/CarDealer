@@ -93,6 +93,11 @@ void VehiclesFrame::on_pushButtonView_clicked()
     viewVehicleDialog->exec();
 }
 
+void VehiclesFrame::on_tableView_doubleClicked(const QModelIndex &index)
+{
+    on_pushButtonView_clicked();
+}
+
 void VehiclesFrame::loadData()
 {
     QSqlQueryModel *tableModel = new QSqlQueryModel;

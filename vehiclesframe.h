@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButtonView_clicked();
 
+    void on_tableView_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::VehiclesFrame *ui;
 
