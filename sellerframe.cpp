@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 
 #include "newsellerdialog.h"
+#include "editsellerdialog.h"
 
 SellerFrame::SellerFrame(QWidget *parent) :
     QFrame(parent),
@@ -36,7 +37,10 @@ void SellerFrame::on_pushButtonAdd_clicked()
 
 void SellerFrame::on_pushButtonEdit_clicked()
 {
+    EditSellerDialog *editSellerDialog = new EditSellerDialog(this);
+    editSellerDialog->exec();
 
+    loadData();
 }
 
 
