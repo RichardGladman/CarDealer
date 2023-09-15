@@ -15,6 +15,9 @@ public:
     explicit CustomersFrame(QWidget *parent = nullptr);
     ~CustomersFrame();
 
+private slots:
+    void on_pushButtonAdd_clicked();
+
 private:
     Ui::CustomersFrame *ui;
 };
