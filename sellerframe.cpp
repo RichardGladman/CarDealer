@@ -37,7 +37,12 @@ void SellerFrame::on_pushButtonAdd_clicked()
 
 void SellerFrame::on_pushButtonEdit_clicked()
 {
-    EditSellerDialog *editSellerDialog = new EditSellerDialog(this);
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+    EditSellerDialog *editSellerDialog = new EditSellerDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
     editSellerDialog->exec();
 
     loadData();
