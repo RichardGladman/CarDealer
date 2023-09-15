@@ -23,6 +23,8 @@ SellerFrame::~SellerFrame()
 
 void SellerFrame::on_pushButtonSearch_clicked()
 {
+    searchFor = ui->lineEditSearchFor->text();
+    loadData();
 }
 
 
