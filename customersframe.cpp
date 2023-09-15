@@ -3,8 +3,10 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QMessageBox>
 
 #include "newcustomerdialog.h"
+#include "editcustomerdialog.h"
 #include "viewcustomerdialog.h"
 
 CustomersFrame::CustomersFrame(QWidget *parent) :
@@ -47,6 +49,56 @@ void CustomersFrame::on_pushButtonView_clicked()
     viewCustomerDialog->exec();
 }
 
+
+void CustomersFrame::on_pushButtonEdit_clicked()
+{
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+    EditCustomerDialog *editCustomerDialog = new EditCustomerDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
+    editCustomerDialog->exec();
+
+    loadData();
+}
+
+void CustomersFrame::on_pushButtonDelete_clicked()
+{
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+
+    QMessageBox *msgbox = new QMessageBox(this);
+    msgbox->setWindowTitle("Question");
+    msgbox->setIcon(QMessageBox::Question);
+    msgbox->setWindowIcon(QIcon(":/images/woman.png"));
+    msgbox->setText("Are you sure? Do you really want to delete this customer?");
+
+    QPushButton *buttonYes, *buttonNo;
+
+    buttonYes = msgbox->addButton(QMessageBox::Yes);
+    msgbox->addButton(QMessageBox::No);
+
+    msgbox->exec();
+
+    if (msgbox->clickedButton() == buttonYes) {
+        QSqlQuery deleteQuery;
+        deleteQuery.prepare("DELETE FROM customers WHERE id=?");
+        deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+
+        if (deleteQuery.exec()) {
+            QMessageBox::information(this, "Success", "Customer has been deleted");
+            loadData();
+        } else {
+            QMessageBox::critical(this, "Error", "Customer has not been deleted");
+        }
+    }
+}
+
+
 void CustomersFrame::loadData()
 {
     QString target = "%" + searchFor + "%";
@@ -77,5 +129,4 @@ void CustomersFrame::loadData()
 
     ui->tableView->setModel(tableModel);
 }
-
 

@@ -22,6 +22,10 @@ private slots:
 
     void on_pushButtonView_clicked();
 
+    void on_pushButtonEdit_clicked();
+
+    void on_pushButtonDelete_clicked();
+
 private:
     Ui::CustomersFrame *ui;
     QString searchFor;
