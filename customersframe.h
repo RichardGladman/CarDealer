@@ -20,6 +20,8 @@ private slots:
 
     void on_pushButtonSearch_clicked();
 
+    void on_pushButtonView_clicked();
+
 private:
     Ui::CustomersFrame *ui;
     QString searchFor;

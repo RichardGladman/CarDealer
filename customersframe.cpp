@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 
 #include "newcustomerdialog.h"
+#include "viewcustomerdialog.h"
 
 CustomersFrame::CustomersFrame(QWidget *parent) :
     QFrame(parent),
@@ -32,6 +33,18 @@ void CustomersFrame::on_pushButtonSearch_clicked()
 {
     searchFor = ui->lineEditSearchFor->text();
     loadData();
+}
+
+
+void CustomersFrame::on_pushButtonView_clicked()
+{
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+    ViewCustomerDialog *viewCustomerDialog = new ViewCustomerDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
+    viewCustomerDialog->exec();
 }
 
 void CustomersFrame::loadData()
@@ -64,4 +77,5 @@ void CustomersFrame::loadData()
 
     ui->tableView->setModel(tableModel);
 }
+
 
