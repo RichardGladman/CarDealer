@@ -31,12 +31,35 @@ EditSellerDialog::~EditSellerDialog()
 
 void EditSellerDialog::on_pushButtonSave_clicked()
 {
+    QString firstName = ui->lineEditFirstName->text();
+    QString lastName = ui->lineEditLastName->text();
+    QString email = ui->lineEditEmail->text();
+    QString phone = ui->lineEditPhone->text();
 
+    if (firstName == "" || lastName == "" || email == "" || phone == "") {
+        QMessageBox::critical(this, "Input Error", "One or more fields have been left blank");
+        return;
+    }
+
+    QSqlQuery updateQuery;
+    updateQuery.prepare("UPDATE sellers SET first_name=?, last_name=?, email=?, phone=? WHERE id=?");
+    updateQuery.addBindValue(firstName);
+    updateQuery.addBindValue(lastName);
+    updateQuery.addBindValue(email);
+    updateQuery.addBindValue(phone);
+    updateQuery.addBindValue(sellerId);
+
+    if (updateQuery.exec()) {
+        QMessageBox::information(this, "Success", "Seller saved successfully");
+        this->close();
+    } else {
+        QMessageBox::critical(this, "Error", "Seller has not been saved");
+    }
 }
 
 
 void EditSellerDialog::on_pushButtonClose_clicked()
 {
-
+    this->close();
 }
 
