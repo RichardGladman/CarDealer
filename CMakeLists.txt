@@ -33,6 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         sellerframe.h sellerframe.cpp sellerframe.ui
         newsellerdialog.h newsellerdialog.cpp newsellerdialog.ui
         editsellerdialog.h editsellerdialog.cpp editsellerdialog.ui
+        customersframe.h customersframe.cpp customersframe.ui
 
     )
 # Define target properties for Android with Qt 6 as:

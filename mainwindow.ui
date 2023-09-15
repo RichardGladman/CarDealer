@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Car Dealer</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/bentley.png</normaloff>:/images/bentley.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -44,6 +48,7 @@
     </property>
     <addaction name="actionVehicles"/>
     <addaction name="actionSellers"/>
+    <addaction name="actionCustomers"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
@@ -102,6 +107,15 @@
    </property>
    <property name="text">
     <string>Sellers</string>
+   </property>
+  </action>
+  <action name="actionCustomers">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/woman.png</normaloff>:/images/woman.png</iconset>
+   </property>
+   <property name="text">
+    <string>Customers</string>
    </property>
   </action>
  </widget>

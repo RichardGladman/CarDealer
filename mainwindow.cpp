@@ -10,6 +10,7 @@
 #include "settingsframe.h"
 #include "vehiclesframe.h"
 #include "sellerframe.h"
+#include "customersframe.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -57,7 +58,7 @@ void MainWindow::on_actionSettings_triggered()
 
 void MainWindow::on_actionAbout_triggered()
 {
-    QMessageBox::about(this, "About Car Dealer", "Car Dealer by The Fifth Continent\n\nCopyright © 2023");
+    QMessageBox::about(this, "About Car Dealer", "Car Dealer by Richard Gladman\n\nCopyright © 2023");
 }
 
 
@@ -87,5 +88,12 @@ void MainWindow::on_actionSellers_triggered()
 {
     SellerFrame *sellerFrame = new SellerFrame(this);
     setCentralWidget(sellerFrame);
+}
+
+
+void MainWindow::on_actionCustomers_triggered()
+{
+    CustomersFrame *customersFrame = new CustomersFrame(this);
+    setCentralWidget(customersFrame);
 }
 

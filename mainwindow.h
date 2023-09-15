@@ -29,6 +29,8 @@ private slots:
 
     void on_actionSellers_triggered();
 
+    void on_actionCustomers_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
