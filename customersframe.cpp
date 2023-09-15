@@ -28,6 +28,12 @@ void CustomersFrame::on_pushButtonAdd_clicked()
     loadData();
 }
 
+void CustomersFrame::on_pushButtonSearch_clicked()
+{
+    searchFor = ui->lineEditSearchFor->text();
+    loadData();
+}
+
 void CustomersFrame::loadData()
 {
     QString target = "%" + searchFor + "%";
@@ -58,3 +64,4 @@ void CustomersFrame::loadData()
 
     ui->tableView->setModel(tableModel);
 }
+
