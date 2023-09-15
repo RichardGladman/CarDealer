@@ -20,6 +20,9 @@ private slots:
 
 private:
     Ui::CustomersFrame *ui;
+    QString searchFor;
+
+    void loadData();
 };
 
 #endif // CUSTOMERSFRAME_H
