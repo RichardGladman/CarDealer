@@ -3,6 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QMessageBox>
 
 #include "newsellerdialog.h"
 #include "editsellerdialog.h"
@@ -53,6 +54,37 @@ void SellerFrame::on_pushButtonEdit_clicked()
 
 void SellerFrame::on_pushButtonDelete_clicked()
 {
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+
+    QMessageBox *msgbox = new QMessageBox(this);
+    msgbox->setWindowTitle("Question");
+    msgbox->setIcon(QMessageBox::Question);
+    msgbox->setWindowIcon(QIcon(":/images/team-member.png"));
+    msgbox->setText("Are you sure? Do you really want to delete this seller?");
+
+    QPushButton *buttonYes, *buttonNo;
+
+    buttonYes = msgbox->addButton(QMessageBox::Yes);
+    msgbox->addButton(QMessageBox::No);
+
+    msgbox->exec();
+
+    if (msgbox->clickedButton() == buttonYes) {
+        QSqlQuery deleteQuery;
+        deleteQuery.prepare("DELETE FROM sellers WHERE id=?");
+        deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+
+        if (deleteQuery.exec()) {
+            QMessageBox::information(this, "Success", "Seller has been deleted");
+            loadData();
+        } else {
+            QMessageBox::critical(this, "Error", "Seller has not been deleted");
+        }
+    }
 
 }
 
