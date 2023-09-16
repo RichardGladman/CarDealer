@@ -81,7 +81,11 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
         insertQuery.addBindValue(sellerId);
         insertQuery.addBindValue(registration);
 
-        if (insertQuery.exec()) {
+        QSqlQuery updateQuery;
+        updateQuery.prepare("UPDATE vehicles SET quantity = quantity - 1 WHERE id=?");
+        updateQuery.addBindValue(vehicleId);
+
+        if (insertQuery.exec() && updateQuery.exec()) {
             QMessageBox::information(this, "Sale completed", "Sale completed successfully");
         } else {
             QMessageBox::critical(this, "Error", "Sale not completed");

@@ -22,6 +22,7 @@ private slots:
 
 private:
     Ui::SalesFrame *ui;
+    QString searchFor;
 
     void loadData();
 };

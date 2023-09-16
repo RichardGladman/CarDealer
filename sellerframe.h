@@ -1,4 +1,4 @@
-#ifndef SELLERFRAME_H
+        #ifndef SELLERFRAME_H
 #define SELLERFRAME_H
 
 #include <QFrame>
