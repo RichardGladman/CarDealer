@@ -123,8 +123,6 @@ void VehiclesFrame::loadData()
 
     query.exec();
 
-    qDebug() << query.executedQuery();
-
     QSqlQueryModel *tableModel = new QSqlQueryModel;
     tableModel->setQuery(std::move(query));
 
