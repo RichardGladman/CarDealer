@@ -31,6 +31,8 @@ private slots:
 
     void on_actionCustomers_triggered();
 
+    void on_actionSell_Vehicle_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

@@ -11,6 +11,7 @@
 #include "vehiclesframe.h"
 #include "sellerframe.h"
 #include "customersframe.h"
+#include "salesframe.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -95,5 +96,12 @@ void MainWindow::on_actionCustomers_triggered()
 {
     CustomersFrame *customersFrame = new CustomersFrame(this);
     setCentralWidget(customersFrame);
+}
+
+
+void MainWindow::on_actionSell_Vehicle_triggered()
+{
+    SalesFrame *salesFrame = new SalesFrame(this);
+    setCentralWidget(salesFrame);
 }
 

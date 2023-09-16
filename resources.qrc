@@ -3,5 +3,6 @@
         <file>images/bentley.png</file>
         <file>images/team-member.png</file>
         <file>images/woman.png</file>
+        <file>images/deal.png</file>
     </qresource>
 </RCC>

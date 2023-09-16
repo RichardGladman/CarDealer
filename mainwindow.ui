@@ -50,8 +50,15 @@
     <addaction name="actionSellers"/>
     <addaction name="actionCustomers"/>
    </widget>
+   <widget class="QMenu" name="menuSales">
+    <property name="title">
+     <string>Sales</string>
+    </property>
+    <addaction name="actionSell_Vehicle"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
+   <addaction name="menuSales"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -116,6 +123,15 @@
    </property>
    <property name="text">
     <string>Customers</string>
+   </property>
+  </action>
+  <action name="actionSell_Vehicle">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/deal.png</normaloff>:/images/deal.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sell Vehicle</string>
    </property>
   </action>
  </widget>
