@@ -15,8 +15,15 @@ public:
     explicit SalesFrame(QWidget *parent = nullptr);
     ~SalesFrame();
 
+private slots:
+    void on_pushButtonAdd_clicked();
+
+    void on_pushButtonView_clicked();
+
 private:
     Ui::SalesFrame *ui;
+
+    void loadData();
 };
 
 #endif // SALESFRAME_H
