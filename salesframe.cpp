@@ -5,6 +5,7 @@
 #include <QSqlQueryModel>
 
 #include "newsaledialog.h"
+#include "viewsalesdialog.h"
 
 SalesFrame::SalesFrame( QWidget *parent) :
     QFrame(parent),
@@ -31,7 +32,13 @@ void SalesFrame::on_pushButtonAdd_clicked()
 
 void SalesFrame::on_pushButtonView_clicked()
 {
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
 
+    ViewSalesDialog *viewSalesDialog = new ViewSalesDialog(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(), this);
+    viewSalesDialog->exec();
 }
 
 void SalesFrame::on_pushButtonSearch_clicked()
