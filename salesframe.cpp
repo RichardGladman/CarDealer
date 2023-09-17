@@ -1,4 +1,4 @@
-#include "salesframe.h"
+    #include "salesframe.h"
 #include "ui_salesframe.h"
 
 #include <QSqlQuery>
@@ -34,6 +34,13 @@ void SalesFrame::on_pushButtonView_clicked()
 
 }
 
+void SalesFrame::on_pushButtonSearch_clicked()
+{
+    searchFor = ui->lineEditSearchFor->text();
+    loadData();
+}
+
+
 void SalesFrame::loadData()
 {
     QString target = "%" + searchFor + "%";
@@ -44,7 +51,7 @@ void SalesFrame::loadData()
     sql += "INNER JOIN customers c on s.customer_id  = c.id ";
 
     if (searchFor != "") {
-        sql += "WHERE c.name LIKE ?";
+        sql += "WHERE c.name LIKE ? OR v.name LIKE ? or v.manufacturer LIKE ?";
     }
 
     sql += "ORDER BY c.name, v.name ";
@@ -53,6 +60,8 @@ void SalesFrame::loadData()
     query.prepare(sql);
 
     if (searchFor != "") {
+        query.addBindValue(target);
+        query.addBindValue(target);
         query.addBindValue(target);
     }
 
