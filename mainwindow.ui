@@ -131,7 +131,7 @@
      <normaloff>:/images/deal.png</normaloff>:/images/deal.png</iconset>
    </property>
    <property name="text">
-    <string>Sell Vehicle</string>
+    <string>Vehicle Sales</string>
    </property>
   </action>
  </widget>
