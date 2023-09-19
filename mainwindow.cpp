@@ -12,6 +12,9 @@
 #include "sellerframe.h"
 #include "customersframe.h"
 #include "salesframe.h"
+#include "reportsellerpermonthdialog.h"
+#include "reportsellerperyeardialog.h"
+#include "reportcustomerbyyeardialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -103,5 +106,26 @@ void MainWindow::on_actionSell_Vehicle_triggered()
 {
     SalesFrame *salesFrame = new SalesFrame(this);
     setCentralWidget(salesFrame);
+}
+
+
+void MainWindow::on_actionSeller_By_Month_triggered()
+{
+    ReportSellerPerMonthDialog *reportSellerPerMonth = new ReportSellerPerMonthDialog(this);
+    reportSellerPerMonth->exec();
+}
+
+
+void MainWindow::on_actionSeller_By_Year_triggered()
+{
+    ReportSellerPerYearDialog *reportSellerPerYear = new ReportSellerPerYearDialog(this);
+    reportSellerPerYear->exec();
+}
+
+
+void MainWindow::on_actionCustomer_By_Year_triggered()
+{
+    ReportCustomerByYearDialog *reportCustomerByYear = new ReportCustomerByYearDialog(this);
+    reportCustomerByYear->exec();
 }
 

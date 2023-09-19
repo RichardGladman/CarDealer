@@ -56,9 +56,18 @@
     </property>
     <addaction name="actionSell_Vehicle"/>
    </widget>
+   <widget class="QMenu" name="menuReports">
+    <property name="title">
+     <string>Reports</string>
+    </property>
+    <addaction name="actionSeller_By_Month"/>
+    <addaction name="actionSeller_By_Year"/>
+    <addaction name="actionCustomer_By_Year"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
    <addaction name="menuSales"/>
+   <addaction name="menuReports"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -132,6 +141,33 @@
    </property>
    <property name="text">
     <string>Vehicle Sales</string>
+   </property>
+  </action>
+  <action name="actionSeller_By_Month">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/reports.png</normaloff>:/images/reports.png</iconset>
+   </property>
+   <property name="text">
+    <string>Seller By Month</string>
+   </property>
+  </action>
+  <action name="actionSeller_By_Year">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/reports.png</normaloff>:/images/reports.png</iconset>
+   </property>
+   <property name="text">
+    <string>Seller By Year</string>
+   </property>
+  </action>
+  <action name="actionCustomer_By_Year">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/reports.png</normaloff>:/images/reports.png</iconset>
+   </property>
+   <property name="text">
+    <string>Customer By Year</string>
    </property>
   </action>
  </widget>

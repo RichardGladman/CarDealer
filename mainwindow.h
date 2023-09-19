@@ -33,6 +33,12 @@ private slots:
 
     void on_actionSell_Vehicle_triggered();
 
+    void on_actionSeller_By_Month_triggered();
+
+    void on_actionSeller_By_Year_triggered();
+
+    void on_actionCustomer_By_Year_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
