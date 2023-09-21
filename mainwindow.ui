@@ -62,7 +62,11 @@
     </property>
     <addaction name="actionSeller_By_Month"/>
     <addaction name="actionSeller_By_Year"/>
+    <addaction name="separator"/>
     <addaction name="actionCustomer_By_Year"/>
+    <addaction name="separator"/>
+    <addaction name="actionDealer_By_Month"/>
+    <addaction name="actionDealer_By_Year"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuStock"/>
@@ -168,6 +172,24 @@
    </property>
    <property name="text">
     <string>Customer By Year</string>
+   </property>
+  </action>
+  <action name="actionDealer_By_Year">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/reports.png</normaloff>:/images/reports.png</iconset>
+   </property>
+   <property name="text">
+    <string>Dealer By Year</string>
+   </property>
+  </action>
+  <action name="actionDealer_By_Month">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/reports.png</normaloff>:/images/reports.png</iconset>
+   </property>
+   <property name="text">
+    <string>Dealer By Month</string>
    </property>
   </action>
  </widget>

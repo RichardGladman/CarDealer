@@ -43,6 +43,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         reportsellerpermonthdialog.h reportsellerpermonthdialog.cpp reportsellerpermonthdialog.ui
         reportsellerperyeardialog.h reportsellerperyeardialog.cpp reportsellerperyeardialog.ui
         reportcustomerbyyeardialog.h reportcustomerbyyeardialog.cpp reportcustomerbyyeardialog.ui
+        reports/reportcardealerperyeardialog.h reports/reportcardealerperyeardialog.cpp reports/reportcardealerperyeardialog.ui
+        reports/reportcardealerbymonthdialog.h reports/reportcardealerbymonthdialog.cpp reports/reportcardealerbymonthdialog.ui
 
     )
 # Define target properties for Android with Qt 6 as:

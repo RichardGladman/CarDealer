@@ -15,6 +15,8 @@
 #include "reportsellerpermonthdialog.h"
 #include "reportsellerperyeardialog.h"
 #include "reportcustomerbyyeardialog.h"
+#include "reports/reportcardealerperyeardialog.h"
+#include "reports/reportcardealerbymonthdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -129,3 +131,16 @@ void MainWindow::on_actionCustomer_By_Year_triggered()
     reportCustomerByYear->exec();
 }
 
+
+void MainWindow::on_actionDealer_By_Year_triggered()
+{
+    ReportCarDealerPerYearDialog *carDealerDialog = new ReportCarDealerPerYearDialog(this);
+    carDealerDialog->exec();
+}
+
+
+void MainWindow::on_actionDealer_By_Month_triggered()
+{
+    ReportCarDealerByMonthDialog *carDealerDialog = new ReportCarDealerByMonthDialog(this);
+    carDealerDialog->exec();
+}

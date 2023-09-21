@@ -39,6 +39,10 @@ private slots:
 
     void on_actionCustomer_By_Year_triggered();
 
+    void on_actionDealer_By_Year_triggered();
+
+    void on_actionDealer_By_Month_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
