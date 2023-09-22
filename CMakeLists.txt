@@ -25,11 +25,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         settingsframe.h settingsframe.cpp settingsframe.ui
 
-        vehiclesframe.h vehiclesframe.cpp vehiclesframe.ui
+        vehicles/vehiclesframe.h vehicles/vehiclesframe.cpp vehicles/vehiclesframe.ui
         resources.qrc
-        newvehicledialog.h newvehicledialog.cpp newvehicledialog.ui
-        editvehicledialog.h editvehicledialog.cpp editvehicledialog.ui
-        viewvehicledialog.h viewvehicledialog.cpp viewvehicledialog.ui
+        vehicles/newvehicledialog.h vehicles/newvehicledialog.cpp vehicles/newvehicledialog.ui
+        vehicles/editvehicledialog.h vehicles/editvehicledialog.cpp vehicles/editvehicledialog.ui
+        vehicles/viewvehicledialog.h vehicles/viewvehicledialog.cpp vehicles/viewvehicledialog.ui
         sellerframe.h sellerframe.cpp sellerframe.ui
         newsellerdialog.h newsellerdialog.cpp newsellerdialog.ui
         editsellerdialog.h editsellerdialog.cpp editsellerdialog.ui

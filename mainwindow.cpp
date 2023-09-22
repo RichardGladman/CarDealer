@@ -8,7 +8,7 @@
 #include <QSettings>
 
 #include "settingsframe.h"
-#include "vehiclesframe.h"
+#include "vehicles/vehiclesframe.h"
 #include "sellerframe.h"
 #include "customers/customersframe.h"
 #include "salesframe.h"
