@@ -36,9 +36,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         customers/newcustomerdialog.h customers/newcustomerdialog.cpp customers/newcustomerdialog.ui
         customers/viewcustomerdialog.h customers/viewcustomerdialog.cpp customers/viewcustomerdialog.ui
         customers/editcustomerdialog.h customers/editcustomerdialog.cpp customers/editcustomerdialog.ui
-        salesframe.h salesframe.cpp salesframe.ui
-        newsaledialog.h newsaledialog.cpp newsaledialog.ui
-        viewsalesdialog.h viewsalesdialog.cpp viewsalesdialog.ui
+        sales/salesframe.h sales/salesframe.cpp sales/salesframe.ui
+        sales/newsaledialog.h sales/newsaledialog.cpp sales/newsaledialog.ui
+        sales/viewsalesdialog.h sales/viewsalesdialog.cpp sales/viewsalesdialog.ui
         reports/reportsellerpermonthdialog.h reports/reportsellerpermonthdialog.cpp reports/reportsellerpermonthdialog.ui
         reports/reportsellerperyeardialog.h reports/reportsellerperyeardialog.cpp reports/reportsellerperyeardialog.ui
         reports/reportcustomerbyyeardialog.h reports/reportcustomerbyyeardialog.cpp reports/reportcustomerbyyeardialog.ui
