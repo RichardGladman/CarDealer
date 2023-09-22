@@ -4,6 +4,8 @@
 #include <QSettings>
 #include <QMessageBox>
 
+#include "settingsvalidator.h"
+
 SettingsFrame::SettingsFrame(QWidget *parent) :
     QFrame(parent),
     ui(new Ui::SettingsFrame)
@@ -32,8 +34,11 @@ void SettingsFrame::on_pushButtonSave_clicked()
     QString username = ui->lineEditUser->text();
     QString password = ui->lineEditPassword->text();
 
-    if (server == "" || database == "" || username == "" || password == "") {
-        QMessageBox::information(this, "Input Error", "You must enter all database settings");
+    SettingsValidator validator {server, database,username, password};
+    QString message;
+
+    if (!validator.validate(message)) {
+        QMessageBox::critical(this, "Input Error", "One or more errors have occurred:" + message);
         return;
     }
 

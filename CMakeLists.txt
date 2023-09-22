@@ -46,6 +46,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         reports/reportcardealerbymonthdialog.h reports/reportcardealerbymonthdialog.cpp reports/reportcardealerbymonthdialog.ui
         customers/customervalidator.h customers/customervalidator.cpp
         sellers/sellervalidator.h sellers/sellervalidator.cpp
+        settings/settingsvalidator.h settings/settingsvalidator.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
