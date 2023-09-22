@@ -24,15 +24,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         settingsframe.h settingsframe.cpp settingsframe.ui
-
-        vehicles/vehiclesframe.h vehicles/vehiclesframe.cpp vehicles/vehiclesframe.ui
         resources.qrc
+        vehicles/vehiclesframe.h vehicles/vehiclesframe.cpp vehicles/vehiclesframe.ui
         vehicles/newvehicledialog.h vehicles/newvehicledialog.cpp vehicles/newvehicledialog.ui
         vehicles/editvehicledialog.h vehicles/editvehicledialog.cpp vehicles/editvehicledialog.ui
         vehicles/viewvehicledialog.h vehicles/viewvehicledialog.cpp vehicles/viewvehicledialog.ui
-        sellerframe.h sellerframe.cpp sellerframe.ui
-        newsellerdialog.h newsellerdialog.cpp newsellerdialog.ui
-        editsellerdialog.h editsellerdialog.cpp editsellerdialog.ui
+        sellers/sellerframe.h sellers/sellerframe.cpp sellers/sellerframe.ui
+        sellers/newsellerdialog.h sellers/newsellerdialog.cpp sellers/newsellerdialog.ui
+        sellers/editsellerdialog.h sellers/editsellerdialog.cpp sellers/editsellerdialog.ui
         customers/customersframe.h customers/customersframe.cpp customers/customersframe.ui
         customers/newcustomerdialog.h customers/newcustomerdialog.cpp customers/newcustomerdialog.ui
         customers/viewcustomerdialog.h customers/viewcustomerdialog.cpp customers/viewcustomerdialog.ui

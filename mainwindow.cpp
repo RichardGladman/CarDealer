@@ -9,7 +9,7 @@
 
 #include "settingsframe.h"
 #include "vehicles/vehiclesframe.h"
-#include "sellerframe.h"
+#include "sellers/sellerframe.h"
 #include "customers/customersframe.h"
 #include "salesframe.h"
 #include "reports/reportsellerpermonthdialog.h"
