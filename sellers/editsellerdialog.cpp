@@ -4,6 +4,8 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
+#include "sellervalidator.h"
+
 EditSellerDialog::EditSellerDialog(int sellerId, QWidget *parent) : QDialog(parent), ui(new Ui::EditSellerDialog)
 {
     ui->setupUi(this);
@@ -36,8 +38,11 @@ void EditSellerDialog::on_pushButtonSave_clicked()
     QString email = ui->lineEditEmail->text();
     QString phone = ui->lineEditPhone->text();
 
-    if (firstName == "" || lastName == "" || email == "" || phone == "") {
-        QMessageBox::critical(this, "Input Error", "One or more fields have been left blank");
+    SellerValidator validator {firstName, lastName, email, phone};
+    QString message;
+
+    if (!validator.validate(message)) {
+        QMessageBox::critical(this, "Input Error", "One or more errors have occurred:" + message);
         return;
     }
 
