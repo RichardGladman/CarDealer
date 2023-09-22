@@ -8,6 +8,8 @@
 #include <QSqlError>
 #include <QDebug>
 
+#include "vehiclevalidator.h"
+
 NewVehicleDialog::NewVehicleDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NewVehicleDialog)
@@ -43,8 +45,11 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
     double price = ui->lineEditPrice->text().toDouble();
     QString currency = ui->comboBoxCurrency->currentText();
 
-    if (vehicleName == "" || manufacturer == "" || year == "" || miles == 0.0 || quantity == 0 || price == 0.0) {
-        QMessageBox::critical(this, "Input error", "One or more fields has been left blank");
+    VehicleValidator validator {vehicleName, manufacturer, year, miles, quantity, price};
+    QString message;
+
+    if (!validator.validate(message)) {
+        QMessageBox::critical(this, "Input Error", "One or more errors have occurred:" + message);
         return;
     }
 
