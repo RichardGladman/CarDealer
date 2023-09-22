@@ -40,9 +40,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         salesframe.h salesframe.cpp salesframe.ui
         newsaledialog.h newsaledialog.cpp newsaledialog.ui
         viewsalesdialog.h viewsalesdialog.cpp viewsalesdialog.ui
-        reportsellerpermonthdialog.h reportsellerpermonthdialog.cpp reportsellerpermonthdialog.ui
-        reportsellerperyeardialog.h reportsellerperyeardialog.cpp reportsellerperyeardialog.ui
-        reportcustomerbyyeardialog.h reportcustomerbyyeardialog.cpp reportcustomerbyyeardialog.ui
+        reports/reportsellerpermonthdialog.h reports/reportsellerpermonthdialog.cpp reports/reportsellerpermonthdialog.ui
+        reports/reportsellerperyeardialog.h reports/reportsellerperyeardialog.cpp reports/reportsellerperyeardialog.ui
+        reports/reportcustomerbyyeardialog.h reports/reportcustomerbyyeardialog.cpp reports/reportcustomerbyyeardialog.ui
         reports/reportcardealerperyeardialog.h reports/reportcardealerperyeardialog.cpp reports/reportcardealerperyeardialog.ui
         reports/reportcardealerbymonthdialog.h reports/reportcardealerbymonthdialog.cpp reports/reportcardealerbymonthdialog.ui
 

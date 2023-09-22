@@ -12,9 +12,9 @@
 #include "sellerframe.h"
 #include "customersframe.h"
 #include "salesframe.h"
-#include "reportsellerpermonthdialog.h"
-#include "reportsellerperyeardialog.h"
-#include "reportcustomerbyyeardialog.h"
+#include "reports/reportsellerpermonthdialog.h"
+#include "reports/reportsellerperyeardialog.h"
+#include "reports/reportcustomerbyyeardialog.h"
 #include "reports/reportcardealerperyeardialog.h"
 #include "reports/reportcardealerbymonthdialog.h"
 
