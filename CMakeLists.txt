@@ -33,10 +33,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         sellerframe.h sellerframe.cpp sellerframe.ui
         newsellerdialog.h newsellerdialog.cpp newsellerdialog.ui
         editsellerdialog.h editsellerdialog.cpp editsellerdialog.ui
-        customersframe.h customersframe.cpp customersframe.ui
-        newcustomerdialog.h newcustomerdialog.cpp newcustomerdialog.ui
-        viewcustomerdialog.h viewcustomerdialog.cpp viewcustomerdialog.ui
-        editcustomerdialog.h editcustomerdialog.cpp editcustomerdialog.ui
+        customers/customersframe.h customers/customersframe.cpp customers/customersframe.ui
+        customers/newcustomerdialog.h customers/newcustomerdialog.cpp customers/newcustomerdialog.ui
+        customers/viewcustomerdialog.h customers/viewcustomerdialog.cpp customers/viewcustomerdialog.ui
+        customers/editcustomerdialog.h customers/editcustomerdialog.cpp customers/editcustomerdialog.ui
         salesframe.h salesframe.cpp salesframe.ui
         newsaledialog.h newsaledialog.cpp newsaledialog.ui
         viewsalesdialog.h viewsalesdialog.cpp viewsalesdialog.ui
