@@ -7,11 +7,11 @@
 #include <QMessageBox>
 #include <QSettings>
 
-#include "settingsframe.h"
+#include "settings/settingsframe.h"
 #include "vehicles/vehiclesframe.h"
 #include "sellers/sellerframe.h"
 #include "customers/customersframe.h"
-#include "salesframe.h"
+#include "sales/salesframe.h"
 #include "reports/reportsellerpermonthdialog.h"
 #include "reports/reportsellerperyeardialog.h"
 #include "reports/reportcustomerbyyeardialog.h"

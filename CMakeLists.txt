@@ -23,7 +23,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(CarDealer
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        settingsframe.h settingsframe.cpp settingsframe.ui
+        settings/settingsframe.h settings/settingsframe.cpp settings/settingsframe.ui
         resources.qrc
         vehicles/vehiclesframe.h vehicles/vehiclesframe.cpp vehicles/vehiclesframe.ui
         vehicles/newvehicledialog.h vehicles/newvehicledialog.cpp vehicles/newvehicledialog.ui
