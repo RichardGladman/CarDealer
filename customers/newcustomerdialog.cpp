@@ -4,6 +4,8 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
+#include "customervalidator.h"
+
 NewCustomerDialog::NewCustomerDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::NewCustomerDialog)
@@ -23,8 +25,11 @@ void NewCustomerDialog::on_pushButtonSave_clicked()
     QString email = ui->lineEditEmail->text();
     QString phone = ui->lineEditPhone->text();
 
-    if (name == "" || address == "" || email == "" || phone == "") {
-        QMessageBox::critical(this, "Input Error", "One or more fields have been left blank");
+    CustomerValidator validator {name, address, email, phone};
+    QString message;
+
+    if (!validator.validate(message)) {
+        QMessageBox::critical(this, "Input Error", "One or more errors have occurred:" + message);
         return;
     }
 
