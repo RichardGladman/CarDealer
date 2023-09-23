@@ -17,6 +17,30 @@ Seller Seller::load(int id)
     return seller;
 }
 
+QSqlQuery Seller::list(QString searchFor)
+{
+    QString target = "%" + searchFor + "%";
+    QString sql = "SELECT * FROM sellers";
+
+    if (searchFor != "") {
+        sql += " WHERE first_name LIKE ? OR last_name LIKE ? or email LIKE ? or phone LIKE ?";
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
+
+    if (searchFor != "") {
+        query.addBindValue(target);
+        query.addBindValue(target);
+        query.addBindValue(target);
+        query.addBindValue(target);
+    }
+
+    query.exec();
+
+    return query;
+}
+
 Seller::Seller(int id, QString firstName, QString lastName, QString email, QString phone): id(id), firstName(firstName), lastName(lastName), email(email), phone(phone) {}
 Seller::Seller(int id): id(id) {}
 Seller::Seller() {}

@@ -89,24 +89,7 @@ void SellerFrame::on_pushButtonDelete_clicked()
 
 void SellerFrame::loadData()
 {
-    QString target = "%" + searchFor + "%";
-    QString sql = "SELECT * FROM sellers";
-
-    if (searchFor != "") {
-        sql += " WHERE first_name LIKE ? OR last_name LIKE ? or email LIKE ? or phone LIKE ?";
-    }
-
-    QSqlQuery query;
-    query.prepare(sql);
-
-    if (searchFor != "") {
-        query.addBindValue(target);
-        query.addBindValue(target);
-        query.addBindValue(target);
-        query.addBindValue(target);
-    }
-
-    query.exec();
+    QSqlQuery query = Seller::list(searchFor);
 
     QSqlQueryModel *tableModel = new QSqlQueryModel(this);
     tableModel->setQuery(std::move(query));

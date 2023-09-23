@@ -9,6 +9,8 @@ class Seller
 {
 public:
     static Seller load(int id);
+    static QSqlQuery list(QString searchFor);
+
     Seller(int id, QString firstName, QString lastName, QString email, QString phone);
     Seller(int id);
     Seller();
