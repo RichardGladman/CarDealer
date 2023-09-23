@@ -14,6 +14,11 @@ public:
 
     bool save();
 
+    QString getFirstName() { return firstName; }
+    QString getLastName() { return lastName; }
+    QString getEmail() { return email; }
+    QString getPhone() { return phone; }
+
 private:
     int id;
     QString firstName;

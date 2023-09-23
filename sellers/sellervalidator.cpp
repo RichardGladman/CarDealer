@@ -1,27 +1,27 @@
 #include "sellervalidator.h"
 
-SellerValidator::SellerValidator(QString firstName, QString lastName, QString email, QString phone): firstName(firstName), lastName(lastName), email(email), phone(phone) {}
+SellerValidator::SellerValidator(Seller seller): seller(seller) {}
 
 bool SellerValidator::validate(QString &message)
 {
     bool valid {true};
 
-    if (firstName == "") {
+    if (seller.getFirstName() == "") {
         valid = false;
         message += "\nFirst name cannot be left blank";
     }
 
-    if (lastName == "") {
+    if (seller.getLastName() == "") {
         valid = false;
         message += "\nLast name cannot be left blank";
     }
 
-    if (email == "") {
+    if (seller.getEmail() == "") {
         valid = false;
         message += "\nEmail cannot be left blank";
     }
 
-    if (phone == "") {
+    if (seller.getPhone() == "") {
         valid = false;
         message += "\nPhone number cannot be left blank";
     }

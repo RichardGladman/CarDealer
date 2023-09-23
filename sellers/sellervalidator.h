@@ -2,19 +2,17 @@
 #define SELLERVALIDATOR_H
 
 #include <QString>
+#include "seller.h"
 
 
 class SellerValidator
 {
 public:
-    SellerValidator(QString firstName, QString lastName, QString email, QString phone);
+    SellerValidator(Seller seller);
     bool validate(QString &message);
 
 private:
-    QString firstName;
-    QString lastName;
-    QString email;
-    QString phone;
+    Seller seller;
 };
 
 #endif // SELLERVALIDATOR_H

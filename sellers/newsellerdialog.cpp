@@ -34,7 +34,7 @@ void NewSellerDialog::on_pushButtonSave_clicked()
     QString phone = ui->lineEditPhone->text();
 
     Seller seller {0, firstName, lastName, email, phone};
-    SellerValidator validator {firstName, lastName, email, phone};
+    SellerValidator validator {seller};
 
     QString message;
 
