@@ -46,3 +46,13 @@ bool Seller::save()
     return updateQuery.exec();
 }
 
+bool Seller::deleteSeller()
+{
+    QSqlQuery deleteQuery;
+    deleteQuery.prepare("DELETE FROM sellers WHERE id=?");
+    deleteQuery.addBindValue(id);
+
+    return deleteQuery.exec();
+
+}
+

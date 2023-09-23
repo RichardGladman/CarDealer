@@ -14,6 +14,7 @@ public:
     Seller();
 
     bool save();
+    bool deleteSeller();
 
     QString getFirstName() { return firstName; }
     QString getLastName() { return lastName; }

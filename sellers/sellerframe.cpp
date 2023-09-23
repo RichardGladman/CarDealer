@@ -7,6 +7,7 @@
 
 #include "newsellerdialog.h"
 #include "editsellerdialog.h"
+#include "seller.h"
 
 SellerFrame::SellerFrame(QWidget *parent) :
     QFrame(parent),
@@ -74,11 +75,9 @@ void SellerFrame::on_pushButtonDelete_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        QSqlQuery deleteQuery;
-        deleteQuery.prepare("DELETE FROM sellers WHERE id=?");
-        deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+        Seller seller { ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt() };
 
-        if (deleteQuery.exec()) {
+        if (seller.deleteSeller()) {
             QMessageBox::information(this, "Success", "Seller has been deleted");
             loadData();
         } else {
