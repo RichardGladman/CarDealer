@@ -100,24 +100,7 @@ void CustomersFrame::on_pushButtonDelete_clicked()
 
 void CustomersFrame::loadData()
 {
-    QString target = "%" + searchFor + "%";
-    QString sql = "SELECT id, name, email, phone FROM customers";
-
-    if (searchFor != "") {
-        sql += " WHERE name LIKE ? OR email LIKE ? OR phone LIKE ?";
-    }
-
-    QSqlQuery query;
-    query.prepare(sql);
-
-    if (searchFor != "") {
-        query.addBindValue(target);
-        query.addBindValue(target);
-        query.addBindValue(target);
-    }
-
-    query.exec();
-
+    QSqlQuery query = Customer::list(searchFor);
     QSqlQueryModel *tableModel = new QSqlQueryModel(this);
     tableModel->setQuery(std::move(query));
 

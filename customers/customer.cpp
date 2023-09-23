@@ -20,6 +20,30 @@ Customer Customer::load(int id)
     return customer;
 }
 
+QSqlQuery Customer::list(QString searchFor)
+{
+    QString target = "%" + searchFor + "%";
+    QString sql = "SELECT id, name, email, phone FROM customers";
+
+    if (searchFor != "") {
+        sql += " WHERE name LIKE ? OR email LIKE ? OR phone LIKE ?";
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
+
+    if (searchFor != "") {
+        query.addBindValue(target);
+        query.addBindValue(target);
+        query.addBindValue(target);
+    }
+
+    query.exec();
+
+    return query;
+}
+
+
 Customer::Customer(int id, QString name, QString address, QString email, QString phone): id(id), name(name), address(address), email(email), phone(phone) {}
 Customer::Customer(int id): id(id) {}
 Customer::Customer() {}

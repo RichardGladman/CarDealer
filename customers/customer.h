@@ -2,17 +2,19 @@
 #define CUSTOMER_H
 
 #include <QString>
+#include <QSqlQuery>
 
 class Customer
 {
 public:
     static Customer load(int id);
+    static QSqlQuery list(QString searchFor);
 
     Customer(int id, QString name, QString address, QString email, QString phone);
     Customer(int id);
     Customer();
 
-    bool save();
+     bool save();
     bool deleteCustomer();
 
     QString getName() { return name; }
