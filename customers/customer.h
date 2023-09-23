@@ -6,7 +6,11 @@
 class Customer
 {
 public:
+    static Customer load(int id);
+
     Customer(int id, QString name, QString address, QString email, QString phone);
+    Customer();
+
     bool save();
 
     QString getName() { return name; }
