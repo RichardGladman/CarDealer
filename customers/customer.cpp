@@ -21,6 +21,7 @@ Customer Customer::load(int id)
 }
 
 Customer::Customer(int id, QString name, QString address, QString email, QString phone): id(id), name(name), address(address), email(email), phone(phone) {}
+Customer::Customer(int id): id(id) {}
 Customer::Customer() {}
 
 bool Customer::save()
@@ -46,5 +47,14 @@ bool Customer::save()
     }
 
 
-     return updateQuery.exec();
+    return updateQuery.exec();
+}
+
+bool Customer::deleteCustomer()
+{
+    QSqlQuery deleteQuery;
+    deleteQuery.prepare("DELETE FROM customers WHERE id=?");
+    deleteQuery.addBindValue(id);
+
+    return deleteQuery.exec();
 }

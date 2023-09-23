@@ -8,6 +8,7 @@
 #include "newcustomerdialog.h"
 #include "editcustomerdialog.h"
 #include "viewcustomerdialog.h"
+#include "customer.h"
 
 CustomersFrame::CustomersFrame(QWidget *parent) :
     QFrame(parent),
@@ -85,11 +86,9 @@ void CustomersFrame::on_pushButtonDelete_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        QSqlQuery deleteQuery;
-        deleteQuery.prepare("DELETE FROM customers WHERE id=?");
-        deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+        Customer customer {ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt()};
 
-        if (deleteQuery.exec()) {
+        if (customer.deleteCustomer()) {
             QMessageBox::information(this, "Success", "Customer has been deleted");
             loadData();
         } else {

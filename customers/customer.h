@@ -9,9 +9,11 @@ public:
     static Customer load(int id);
 
     Customer(int id, QString name, QString address, QString email, QString phone);
+    Customer(int id);
     Customer();
 
     bool save();
+    bool deleteCustomer();
 
     QString getName() { return name; }
     QString getAddress() { return address; }
