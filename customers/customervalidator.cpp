@@ -1,27 +1,27 @@
 #include "customervalidator.h"
 
-CustomerValidator::CustomerValidator(QString name, QString address, QString email, QString phone): name(name), address(address), email(email), phone(phone) {}
+CustomerValidator::CustomerValidator(Customer customer): customer(customer) {}
 
 bool CustomerValidator::validate(QString &message)
 {
     bool valid = true;
 
-    if (name == "") {
+    if (customer.getName() == "") {
         valid = false;
         message += "\nName cannot be left blank";
     }
 
-    if (address == "") {
+    if (customer.getAddress() == "") {
         valid = false;
         message += "\nAddress cannot be left blank";
     }
 
-    if (email == "") {
+    if (customer.getEmail() == "") {
         valid = false;
         message += "\nEmail cannot be left blank";
     }
 
-    if (phone == "") {
+    if (customer.getPhone() == "") {
         valid = false;
         message += "\nPhone cannot be left blank";
     }

@@ -1,20 +1,17 @@
 #ifndef CUSTOMERVALIDATOR_H
 #define CUSTOMERVALIDATOR_H
 
-#include <QString>
+#include "customer.h"
 
 
 class CustomerValidator
 {
 public:
-    CustomerValidator(QString name, QString address, QString email, QString phone);
+    CustomerValidator(Customer customer);
     bool validate(QString &message);
 
 private:
-    QString name;
-    QString address;
-    QString email;
-    QString phone;
+    Customer customer;
 };
 
 #endif // CUSTOMERVALIDATOR_H

@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 #include "customervalidator.h"
+#include "customer.h"
 
 NewCustomerDialog::NewCustomerDialog(QWidget *parent) :
     QDialog(parent),
@@ -25,7 +26,8 @@ void NewCustomerDialog::on_pushButtonSave_clicked()
     QString email = ui->lineEditEmail->text();
     QString phone = ui->lineEditPhone->text();
 
-    CustomerValidator validator {name, address, email, phone};
+    Customer customer {0, name, address, email, phone};
+    CustomerValidator validator {customer};
     QString message;
 
     if (!validator.validate(message)) {
@@ -33,14 +35,7 @@ void NewCustomerDialog::on_pushButtonSave_clicked()
         return;
     }
 
-    QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO customers(name, address, email, phone) VALUES(?, ?, ?, ?)");
-    insertQuery.addBindValue(name);
-    insertQuery.addBindValue(address);
-    insertQuery.addBindValue(email);
-    insertQuery.addBindValue(phone);
-
-    if (insertQuery.exec()) {
+    if (customer.save()) {
         QMessageBox::information(this, "Success", "Customer has been saved");
 
         ui->lineEditName->clear();

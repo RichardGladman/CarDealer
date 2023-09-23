@@ -49,6 +49,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         settings/settingsvalidator.h settings/settingsvalidator.cpp
         vehicles/vehiclevalidator.h vehicles/vehiclevalidator.cpp
         sql/database.sql
+        customers/customer.h customers/customer.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
