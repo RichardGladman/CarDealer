@@ -50,6 +50,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vehicles/vehiclevalidator.h vehicles/vehiclevalidator.cpp
         sql/database.sql
         customers/customer.h customers/customer.cpp
+        sellers/seller.h sellers/seller.cpp
 
     )
 # Define target properties for Android with Qt 6 as:

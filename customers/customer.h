@@ -14,7 +14,7 @@ public:
     Customer(int id);
     Customer();
 
-     bool save();
+    bool save();
     bool deleteCustomer();
 
     QString getName() { return name; }

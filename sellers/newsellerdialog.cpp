@@ -5,6 +5,7 @@
 #include <QSqlQuery>
 #include <QSqlError>
 
+#include "seller.h"
 #include "sellervalidator.h"
 
 NewSellerDialog::NewSellerDialog(QWidget *parent) :
@@ -32,7 +33,9 @@ void NewSellerDialog::on_pushButtonSave_clicked()
     QString email = ui->lineEditEmail->text();
     QString phone = ui->lineEditPhone->text();
 
+    Seller seller {0, firstName, lastName, email, phone};
     SellerValidator validator {firstName, lastName, email, phone};
+
     QString message;
 
     if (!validator.validate(message)) {
@@ -40,14 +43,7 @@ void NewSellerDialog::on_pushButtonSave_clicked()
         return;
     }
 
-    QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO sellers(first_name, last_name, email, phone) VALUES(?, ?, ?, ?)");
-    insertQuery.addBindValue(firstName);
-    insertQuery.addBindValue(lastName);
-    insertQuery.addBindValue(email);
-    insertQuery.addBindValue(phone);
-
-    if (insertQuery.exec()) {
+    if (seller.save()) {
         QMessageBox::information(this, "Success", "Seller information saved successfully");
 
         ui->lineEditFirstName->clear();

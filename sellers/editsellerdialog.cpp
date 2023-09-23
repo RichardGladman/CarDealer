@@ -5,6 +5,7 @@
 #include <QMessageBox>
 
 #include "sellervalidator.h"
+#include "seller.h"
 
 EditSellerDialog::EditSellerDialog(int sellerId, QWidget *parent) : QDialog(parent), ui(new Ui::EditSellerDialog)
 {
@@ -38,7 +39,9 @@ void EditSellerDialog::on_pushButtonSave_clicked()
     QString email = ui->lineEditEmail->text();
     QString phone = ui->lineEditPhone->text();
 
+    Seller seller {sellerId, firstName, lastName, email, phone};
     SellerValidator validator {firstName, lastName, email, phone};
+
     QString message;
 
     if (!validator.validate(message)) {
@@ -46,17 +49,8 @@ void EditSellerDialog::on_pushButtonSave_clicked()
         return;
     }
 
-    QSqlQuery updateQuery;
-    updateQuery.prepare("UPDATE sellers SET first_name=?, last_name=?, email=?, phone=? WHERE id=?");
-    updateQuery.addBindValue(firstName);
-    updateQuery.addBindValue(lastName);
-    updateQuery.addBindValue(email);
-    updateQuery.addBindValue(phone);
-    updateQuery.addBindValue(sellerId);
-
-    if (updateQuery.exec()) {
+    if (seller.save()) {
         QMessageBox::information(this, "Success", "Seller saved successfully");
-        this->close();
     } else {
         QMessageBox::critical(this, "Error", "Seller has not been saved");
     }
