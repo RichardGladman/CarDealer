@@ -13,18 +13,12 @@ EditSellerDialog::EditSellerDialog(int sellerId, QWidget *parent) : QDialog(pare
 
     this->sellerId = sellerId;
 
-    QSqlQuery query;
-    query.prepare("SELECT * FROM sellers WHERE id=?");
-    query.addBindValue(sellerId);
+    Seller seller = Seller::load(sellerId);
 
-    if (query.exec()) {
-        if (query.next()) {
-            ui->lineEditFirstName->setText(query.value(1).toString());
-            ui->lineEditLastName->setText(query.value(2).toString());
-            ui->lineEditEmail->setText(query.value(3).toString());
-            ui->lineEditPhone->setText(query.value(4).toString());
-        }
-    }
+    ui->lineEditFirstName->setText(seller.getFirstName());
+    ui->lineEditLastName->setText(seller.getLastName());
+    ui->lineEditEmail->setText(seller.getEmail());
+    ui->lineEditPhone->setText(seller.getPhone());
 }
 
 EditSellerDialog::~EditSellerDialog()

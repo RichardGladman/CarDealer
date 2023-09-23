@@ -1,5 +1,22 @@
 #include "seller.h"
 
+Seller Seller::load(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM sellers WHERE id=?");
+    query.addBindValue(id);
+
+    if (query.exec()) {
+        if (query.next()) {
+            Seller seller {query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString()};
+            return seller;
+        }
+    }
+
+    Seller seller;
+    return seller;
+}
+
 Seller::Seller(int id, QString firstName, QString lastName, QString email, QString phone): id(id), firstName(firstName), lastName(lastName), email(email), phone(phone) {}
 Seller::Seller(int id): id(id) {}
 Seller::Seller() {}

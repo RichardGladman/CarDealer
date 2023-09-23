@@ -8,6 +8,7 @@
 class Seller
 {
 public:
+    static Seller load(int id);
     Seller(int id, QString firstName, QString lastName, QString email, QString phone);
     Seller(int id);
     Seller();
