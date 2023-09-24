@@ -8,6 +8,7 @@
 #include <QMessageBox>
 
 #include "vehiclevalidator.h"
+#include "vehicle.h"
 
 EditVehicleDialog::EditVehicleDialog(int vehicleId, QWidget *parent) : QDialog(parent), ui(new Ui::EditVehicleDialog)
 {
@@ -41,17 +42,6 @@ EditVehicleDialog::~EditVehicleDialog()
 
 void EditVehicleDialog::on_pushButtonSave_clicked()
 {
-    QByteArray pictureBytes;
-
-    if (ui->lineEditImage->text() != "") {
-        QFile file(ui->lineEditImage->text());
-
-        if (file.open(QIODevice::ReadOnly)) {
-            pictureBytes = file.readAll();
-            file.close();
-        }
-    }
-
     QString vehicleName = ui->lineEditVehicleName->text();
     QString manufacturer = ui->lineEditManufacturer->text();
     QString year = ui->lineEditYear->text();
@@ -61,7 +51,9 @@ void EditVehicleDialog::on_pushButtonSave_clicked()
     int quantity = ui->lineEditQuantity->text().toInt();
     double price = ui->lineEditPrice->text().toDouble();
     QString currency = ui->comboBoxCurrency->currentText();
+    QString picture = ui->lineEditImage->text();
 
+    Vehicle vehicle {vehicleId, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, currency, picture};
     VehicleValidator validator {vehicleName, manufacturer, year, miles, quantity, price};
     QString message;
 
@@ -70,38 +62,10 @@ void EditVehicleDialog::on_pushButtonSave_clicked()
         return;
     }
 
-    QString sql = "UPDATE vehicles SET name=?, manufacturer=?, year_of_manufacture=?, miles=?, vehicle_condition=?, drive=?, quantity=?, price=?, currency=?";
-
-    if (ui->lineEditImage->text() != "") {
-        sql += ", picture=?";
-    }
-
-    sql += " WHERE id=?";
-
-    QSqlQuery updateQuery;
-    updateQuery.prepare(sql);
-    updateQuery.addBindValue(vehicleName);
-    updateQuery.addBindValue(manufacturer);
-    updateQuery.addBindValue(year);
-    updateQuery.addBindValue(miles);
-    updateQuery.addBindValue(condition);
-    updateQuery.addBindValue(drive);
-    updateQuery.addBindValue(quantity);
-    updateQuery.addBindValue(price);
-    updateQuery.addBindValue(currency);
-
-    if (ui->lineEditImage->text() != "") {
-        updateQuery.addBindValue(pictureBytes);
-    }
-
-    updateQuery.addBindValue(vehicleId);
-
-    if (updateQuery.exec()) {
+    if (vehicle.save()) {
         QMessageBox::information(this, "Success", "Vehicle saved successfully");
-        this->close();
     } else {
-        QMessageBox::critical(this, "Error", "Vehicle not saved\n\n" + updateQuery.lastError().text());
-        qDebug() << updateQuery.executedQuery();
+        QMessageBox::critical(this, "Error", "Vehicle not saved\n\n");
     }
 }
 

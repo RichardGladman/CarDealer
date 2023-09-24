@@ -9,6 +9,7 @@
 #include <QDebug>
 
 #include "vehiclevalidator.h"
+#include "vehicle.h"
 
 NewVehicleDialog::NewVehicleDialog(QWidget *parent) :
     QDialog(parent),
@@ -24,17 +25,6 @@ NewVehicleDialog::~NewVehicleDialog()
 
 void NewVehicleDialog::on_pushButtonSave_clicked()
 {
-    QByteArray pictureBytes;
-
-    if (ui->lineEditImage->text() != "") {
-        QFile file(ui->lineEditImage->text());
-
-        if (file.open(QIODevice::ReadOnly)) {
-            pictureBytes = file.readAll();
-            file.close();
-        }
-    }
-
     QString vehicleName = ui->lineEditVehicleName->text();
     QString manufacturer = ui->lineEditManufacturer->text();
     QString year = ui->lineEditYear->text();
@@ -44,7 +34,9 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
     int quantity = ui->lineEditQuantity->text().toInt();
     double price = ui->lineEditPrice->text().toDouble();
     QString currency = ui->comboBoxCurrency->currentText();
+    QString picture = ui->lineEditImage->text();
 
+    Vehicle vehicle {0, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, currency, picture};
     VehicleValidator validator {vehicleName, manufacturer, year, miles, quantity, price};
     QString message;
 
@@ -53,20 +45,7 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
         return;
     }
 
-    QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO vehicles(name, manufacturer, year_of_manufacture, miles, vehicle_condition, drive, quantity, price, currency, picture) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    insertQuery.addBindValue(vehicleName);
-    insertQuery.addBindValue(manufacturer);
-    insertQuery.addBindValue(year);
-    insertQuery.addBindValue(miles);
-    insertQuery.addBindValue(condition);
-    insertQuery.addBindValue(drive);
-    insertQuery.addBindValue(quantity);
-    insertQuery.addBindValue(price);
-    insertQuery.addBindValue(currency);
-    insertQuery.addBindValue(pictureBytes);
-
-    if (insertQuery.exec()) {
+    if (vehicle.save()) {
         QMessageBox::information(this, "Success", "Vehicle added successfully");
 
         ui->lineEditVehicleName->clear();
@@ -80,8 +59,7 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
         ui->comboBoxDrive->setCurrentIndex(0);
         ui->comboBoxCurrency->setCurrentIndex(0);
     } else {
-        QMessageBox::critical(this, "Error", "Vehicle not saved\n\n" + insertQuery.lastError().text());
-        qDebug() << insertQuery.executedQuery();
+        QMessageBox::critical(this, "Error", "Vehicle not saved\n\n");
     }
 }
 
