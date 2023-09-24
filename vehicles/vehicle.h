@@ -18,6 +18,7 @@ public:
     int getId() { return id; }
     QString getName() { return name; }
     QString getManufacturer() { return manufacturer; }
+    QString getYearOfManufacture() { return yearOfManufacture; }
     double getMiles() { return miles; }
     QString getVehicleCondition() { return vehicleCondition; }
     QString getDrive() { return drive; }

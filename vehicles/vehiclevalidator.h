@@ -3,21 +3,18 @@
 
 #include <QString>
 
+#include "vehicle.h"
+
 
 class VehicleValidator
 {
 public:
-    VehicleValidator(QString vehicleName, QString manufacturer, QString year, double miles, int quantity, double price);
+    VehicleValidator(Vehicle vehicle);
 
     bool validate(QString &message);
 
 private:
-    QString vehicleName;
-    QString manufacturer;
-    QString year;
-    double miles;
-    int quantity;
-    double price;
+    Vehicle vehicle;
 };
 
 #endif // VEHICLEVALIDATOR_H

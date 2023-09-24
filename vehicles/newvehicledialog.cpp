@@ -37,7 +37,7 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
     QString picture = ui->lineEditImage->text();
 
     Vehicle vehicle {0, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, currency, picture};
-    VehicleValidator validator {vehicleName, manufacturer, year, miles, quantity, price};
+    VehicleValidator validator {vehicle};
     QString message;
 
     if (!validator.validate(message)) {

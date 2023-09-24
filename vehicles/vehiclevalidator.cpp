@@ -1,38 +1,37 @@
 #include "vehiclevalidator.h"
 
-VehicleValidator::VehicleValidator(QString vehicleName, QString manufacturer, QString year, double miles, int quantity, double price):
-    vehicleName(vehicleName), manufacturer(manufacturer), year(year), miles(miles), quantity(quantity), price(price) {}
+VehicleValidator::VehicleValidator(Vehicle vehicle): vehicle(vehicle) {}
 
 bool VehicleValidator::validate(QString &message)
 {
     bool valid = true;
 
-    if (vehicleName == "") {
+    if (vehicle.getName() == "") {
         valid = false;
         message += "\nVehicle name cannot be blank";
     }
 
-    if (manufacturer == "") {
+    if (vehicle.getManufacturer() == "") {
         valid = false;
         message += "\nManufacturer cannot be blank";
     }
 
-    if (year == "") {
+    if (vehicle.getYearOfManufacture() == "") {
         valid = false;
         message += "\nPlease enter the year of manufacture";
     }
 
-    if (miles == 0.0) {
+    if (vehicle.getMiles() == 0.0) {
         valid = false;
         message += "\nPlease enter the current odometer reading";
     }
 
-    if (quantity == 0) {
+    if (vehicle.getQuantity() == 0) {
         valid = false;
         message += "\nPlease enter the quantity";
     }
 
-    if (price == 0.0) {
+    if (vehicle.getPrice() == 0.0) {
         valid = false;
         message += "\nPlease enter the selling price";
     }
