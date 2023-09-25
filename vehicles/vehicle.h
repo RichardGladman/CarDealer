@@ -16,6 +16,7 @@ public:
     Vehicle();
 
     bool save();
+    bool deleteById();
 
     int getId() { return id; }
     QString getName() { return name; }

@@ -78,3 +78,13 @@ bool Vehicle::save()
 
     return query.exec();
 }
+
+bool Vehicle::deleteById()
+{
+    QSqlQuery deleteQuery;
+    deleteQuery.prepare("DELETE FROM vehicles WHERE id=?");
+    deleteQuery.addBindValue(id);
+
+    return deleteQuery.exec();
+
+}

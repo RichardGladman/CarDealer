@@ -9,6 +9,7 @@
 #include "newvehicledialog.h"
 #include "editvehicledialog.h"
 #include "viewvehicledialog.h"
+#include "vehicle.h"
 
 VehiclesFrame::VehiclesFrame(QWidget *parent) :
     QFrame(parent),
@@ -68,11 +69,9 @@ void VehiclesFrame::on_pushButtonDelete_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        QSqlQuery deleteQuery;
-        deleteQuery.prepare("DELETE FROM vehicles WHERE id=?");
-        deleteQuery.addBindValue(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+        Vehicle vehicle {ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt()};
 
-        if (deleteQuery.exec()) {
+        if (vehicle.deleteById()) {
             QMessageBox::information(this, "Success", "Vehicle has been deleted");
 
             loadData();
