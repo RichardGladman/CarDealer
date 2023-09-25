@@ -29,6 +29,26 @@ QSqlQuery SalesModel::list(QString searchFor)
     return query;
 }
 
-SalesModel::SalesModel()
+SalesModel SalesModel::load(int id)
 {
+    QString sql = "SELECT * FROM sales WHERE id = ?";
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(id);
+
+    if (query.exec() && query.next()) {
+        SalesModel salesModel {id, query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt(), query.value(4).toString(), query.value(5).toString()};
+        return salesModel;
+    }
+
+    SalesModel salesModel;
+    return salesModel;
 }
+
+SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate):
+    id(id), customerId(customerId), vehicleId(vehicleId), sellerId(sellerId), registration(registration), addedDate(addedDate) {}
+
+SalesModel::SalesModel(int id): id(id){}
+
+SalesModel::SalesModel() {}
