@@ -106,22 +106,7 @@ void VehiclesFrame::on_pushButtonSearch_clicked()
 
 void VehiclesFrame::loadData()
 {
-    QString target = "%" + searchFor + "%";
-
-    QString sql = "SELECT id, manufacturer, name, year_of_manufacture, vehicle_condition FROM vehicles";
-    if (searchFor != "") {
-        sql += " WHERE manufacturer LIKE ? OR name like ? or year_of_manufacture LIKE ? or vehicle_condition LIKE ?";
-    }
-
-    QSqlQuery query;
-    query.prepare(sql);
-    query.addBindValue(target);
-    query.addBindValue(target);
-    query.addBindValue(target);
-    query.addBindValue(target);
-
-    query.exec();
-
+    QSqlQuery query = Vehicle::list(searchFor);
     QSqlQueryModel *tableModel = new QSqlQueryModel;
     tableModel->setQuery(std::move(query));
 

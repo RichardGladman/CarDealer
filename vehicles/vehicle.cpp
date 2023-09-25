@@ -23,6 +23,27 @@ Vehicle Vehicle::load(int id)
     return vehicle;
 }
 
+QSqlQuery Vehicle::list(QString searchFor)
+{
+    QString target = "%" + searchFor + "%";
+
+    QString sql = "SELECT id, manufacturer, name, year_of_manufacture, vehicle_condition FROM vehicles";
+    if (searchFor != "") {
+        sql += " WHERE manufacturer LIKE ? OR name like ? or year_of_manufacture LIKE ? or vehicle_condition LIKE ?";
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(target);
+    query.addBindValue(target);
+    query.addBindValue(target);
+    query.addBindValue(target);
+
+    query.exec();
+
+    return query;
+}
+
 Vehicle::Vehicle(int id, QString name, QString manufacturer, QString yearOfManufacture, double miles, QString vehicleCondition,
                  QString drive, int quantity, double price, QString currency, QString picture, QByteArray pictureBytes):
     id(id), name(name), manufacturer(manufacturer), yearOfManufacture(yearOfManufacture), miles(miles), vehicleCondition(vehicleCondition),
