@@ -9,6 +9,7 @@ class Customer
 public:
     static Customer load(int id);
     static QSqlQuery list(QString searchFor);
+    static QVector<Customer> list();
 
     Customer(int id, QString name, QString address, QString email, QString phone);
     Customer(int id);
@@ -17,6 +18,7 @@ public:
     bool save();
     bool deleteCustomer();
 
+    int getId() { return id; }
     QString getName() { return name; }
     QString getAddress() { return address; }
     QString getEmail() { return email; }

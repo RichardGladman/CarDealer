@@ -41,6 +41,21 @@ QSqlQuery Seller::list(QString searchFor)
     return query;
 }
 
+QVector<Seller> Seller::list()
+{
+    QVector<Seller> sellers;
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM sellers ORDER BY last_name, first_name");
+    if (query.exec()) {
+        while (query.next()) {
+            sellers.push_back(Seller {query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString()});
+        }
+    }
+
+    return sellers;
+}
+
 Seller::Seller(int id, QString firstName, QString lastName, QString email, QString phone): id(id), firstName(firstName), lastName(lastName), email(email), phone(phone) {}
 Seller::Seller(int id): id(id) {}
 Seller::Seller() {}

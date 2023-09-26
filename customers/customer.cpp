@@ -43,6 +43,21 @@ QSqlQuery Customer::list(QString searchFor)
     return query;
 }
 
+QVector<Customer> Customer::list()
+{
+    QVector<Customer> customers;
+    QSqlQuery query;
+
+    query.prepare("SELECT * FROM customers ORDER BY name");
+    if (query.exec()) {
+        while (query.next()) {
+            customers.push_back(Customer {query.value(0).toInt(), query.value(1).toString(), query.value(2).toString(), query.value(3).toString(), query.value(4).toString()});
+        }
+    }
+
+    return customers;
+}
+
 
 Customer::Customer(int id, QString name, QString address, QString email, QString phone): id(id), name(name), address(address), email(email), phone(phone) {}
 Customer::Customer(int id): id(id) {}

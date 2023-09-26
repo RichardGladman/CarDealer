@@ -10,6 +10,7 @@ class Seller
 public:
     static Seller load(int id);
     static QSqlQuery list(QString searchFor);
+    static QVector<Seller> list();
 
     Seller(int id, QString firstName, QString lastName, QString email, QString phone);
     Seller(int id);
@@ -18,6 +19,7 @@ public:
     bool save();
     bool deleteSeller();
 
+    int getId() { return id; }
     QString getFirstName() { return firstName; }
     QString getLastName() { return lastName; }
     QString getEmail() { return email; }

@@ -4,35 +4,28 @@
 #include <QSqlQuery>
 #include <QMessageBox>
 
+#include "../vehicles/vehicle.h"
+#include "../customers/customer.h"
+#include "../sellers/seller.h"
+
 NewSaleDialog::NewSaleDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewSaleDialog)
 {
     ui->setupUi(this);
 
-    QSqlQuery vehicleQuery;
-    vehicleQuery.prepare("SELECT id, name, year_of_manufacture, drive, price, currency FROM vehicles WHERE quantity > 0 ORDER BY name");
-    if (vehicleQuery.exec()) {
-        while (vehicleQuery.next()) {
-            QString information = vehicleQuery.value(1).toString() + " (" + vehicleQuery.value(2).toString() + " " + vehicleQuery.value(3).toString() + ") ";
-            information += vehicleQuery.value(5).toString() + vehicleQuery.value(4).toString();
-            ui->comboBoxVehicle->addItem(information, vehicleQuery.value(0).toInt());
-        }
+    QVector<Vehicle> vehicles = Vehicle::list();
+    for (Vehicle vehicle: vehicles) {
+        QString information = vehicle.getName() + " (" + vehicle.getYearOfManufacture() + " " + vehicle.getDrive() + ") " + vehicle.getCurrency() + QString::number(vehicle.getPrice(), 'f', 2);
+        ui->comboBoxVehicle->addItem(information, vehicle.getId());
     }
 
-    QSqlQuery customerQuery;
-    customerQuery.prepare("SELECT id, name FROM customers ORDER BY name");
-    if (customerQuery.exec()) {
-        while (customerQuery.next()) {
-            ui->comboBoxCustomer->addItem(customerQuery.value(1).toString(), customerQuery.value(0).toInt());
-        }
+    QVector<Customer> customers = Customer::list();
+    for (Customer customer: customers) {
+        ui->comboBoxCustomer->addItem(customer.getName(), customer.getId());
     }
 
-    QSqlQuery sellerQuery;
-    sellerQuery.prepare("SELECT id, first_name, last_name FROM sellers ORDER BY last_name, first_name");
-    if (sellerQuery.exec()) {
-        while (sellerQuery.next()) {
-            QString fullName = sellerQuery.value(1).toString() + " " + sellerQuery.value(2).toString();
-            ui->comboBoxSeller->addItem(fullName, sellerQuery.value(0).toInt());
-        }
+    QVector<Seller> sellers = Seller::list();
+    for (Seller seller: sellers) {
+        ui->comboBoxSeller->addItem(seller.getFirstName() + " " + seller.getLastName(), seller.getId());
     }
 }
 

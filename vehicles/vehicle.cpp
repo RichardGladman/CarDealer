@@ -44,6 +44,23 @@ QSqlQuery Vehicle::list(QString searchFor)
     return query;
 }
 
+QVector<Vehicle> Vehicle::list()
+{
+    QSqlQuery query;
+    QVector<Vehicle> vehicles;
+
+    query.prepare("SELECT * FROM vehicles WHERE quantity > 0 ORDER BY name");
+    if (query.exec()) {
+        while (query.next()) {
+            vehicles.push_back(Vehicle {query.value(0).toInt(), query.value(10).toString(), query.value(1).toString(), query.value(2).toString(), query.value(3).toDouble(),
+                                        query.value(4).toString(), query.value(5).toString(), query.value(6).toInt(), query.value(7).toDouble(), query.value(8).toString(),
+                                        QString(), query.value(9).toByteArray()});
+        }
+    }
+
+    return vehicles;
+}
+
 Vehicle::Vehicle(int id, QString name, QString manufacturer, QString yearOfManufacture, double miles, QString vehicleCondition,
                  QString drive, int quantity, double price, QString currency, QString picture, QByteArray pictureBytes):
     id(id), name(name), manufacturer(manufacturer), yearOfManufacture(yearOfManufacture), miles(miles), vehicleCondition(vehicleCondition),

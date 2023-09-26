@@ -10,6 +10,7 @@ class Vehicle
 public:
     static Vehicle load(int id);
     static QSqlQuery list(QString searchFor);
+    static QVector<Vehicle> list();
 
     Vehicle(int id, QString name, QString manufacturer, QString yearOfManufacture, double miles, QString vehicleCondition,
             QString drive, int quantity, double price, QString currency, QString picture, QByteArray pictureBytes = QByteArray());
