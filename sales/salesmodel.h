@@ -14,6 +14,8 @@ public:
     SalesModel(int id);
     SalesModel();
 
+    bool save();
+
     int getCustomerId() { return customerId; }
     int getVehicleId() { return vehicleId; }
     int getSellerId() { return sellerId; }

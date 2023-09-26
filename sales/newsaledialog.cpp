@@ -7,6 +7,7 @@
 #include "../vehicles/vehicle.h"
 #include "../customers/customer.h"
 #include "../sellers/seller.h"
+#include "salesmodel.h"
 
 NewSaleDialog::NewSaleDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewSaleDialog)
 {
@@ -67,18 +68,9 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        QSqlQuery insertQuery;
-        insertQuery.prepare("INSERT INTO sales(vehicle_id, customer_id, seller_id, registration) VALUES(?, ?, ?, ?)");
-        insertQuery.addBindValue(vehicleId);
-        insertQuery.addBindValue(customerId);
-        insertQuery.addBindValue(sellerId);
-        insertQuery.addBindValue(registration);
+        SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, ""};
 
-        QSqlQuery updateQuery;
-        updateQuery.prepare("UPDATE vehicles SET quantity = quantity - 1 WHERE id=?");
-        updateQuery.addBindValue(vehicleId);
-
-        if (insertQuery.exec() && updateQuery.exec()) {
+        if (sale.save()) {
             QMessageBox::information(this, "Sale completed", "Sale completed successfully");
         } else {
             QMessageBox::critical(this, "Error", "Sale not completed");

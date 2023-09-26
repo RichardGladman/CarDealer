@@ -52,3 +52,19 @@ SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QStr
 SalesModel::SalesModel(int id): id(id){}
 
 SalesModel::SalesModel() {}
+
+bool SalesModel::save()
+{
+    QSqlQuery insertQuery;
+    insertQuery.prepare("INSERT INTO sales(vehicle_id, customer_id, seller_id, registration) VALUES(?, ?, ?, ?)");
+    insertQuery.addBindValue(vehicleId);
+    insertQuery.addBindValue(customerId);
+    insertQuery.addBindValue(sellerId);
+    insertQuery.addBindValue(registration);
+
+    QSqlQuery updateQuery;
+    updateQuery.prepare("UPDATE vehicles SET quantity = quantity - 1 WHERE id=?");
+    updateQuery.addBindValue(vehicleId);
+
+    return insertQuery.exec() && updateQuery.exec();
+}
