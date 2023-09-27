@@ -5,6 +5,8 @@
 #include <QSqlQueryModel>
 #include <QMessageBox>
 
+#include "../sales/salesmodel.h"
+
 ReportCarDealerPerYearDialog::ReportCarDealerPerYearDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReportCarDealerPerYearDialog)
@@ -25,29 +27,15 @@ ReportCarDealerPerYearDialog::~ReportCarDealerPerYearDialog()
 
 void ReportCarDealerPerYearDialog::on_pushButtonRun_clicked()
 {
-    int limit = ui->comboBoxTop->currentData().toInt();
+    QSqlQuery query = SalesModel::allSalesByYear(ui->comboBoxTop->currentData().toInt());
+    QSqlQueryModel *tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery(std::move(query));
 
-    QString sql = "SELECT YEAR(s.added_date) AS y, count(s.id), sum(v.price) FROM sales s";
-    sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
-    sql += " GROUP BY y";
+    tableModel->setHeaderData(0, Qt::Horizontal, "Year");
+    tableModel->setHeaderData(1, Qt::Horizontal, "Total Sales");
+    tableModel->setHeaderData(2, Qt::Horizontal, "Total Sales Value");
 
-    if (limit != 0) {
-        sql += " LIMIT " + QString::number(limit);
-    }
-
-    QSqlQuery query;
-    query.prepare(sql);
-
-    if (query.exec()) {
-        QSqlQueryModel *tableModel = new QSqlQueryModel(this);
-        tableModel->setQuery(std::move(query));
-
-        tableModel->setHeaderData(0, Qt::Horizontal, "Year");
-        tableModel->setHeaderData(1, Qt::Horizontal, "Total Sales");
-        tableModel->setHeaderData(2, Qt::Horizontal, "Total Sales Value");
-
-        ui->tableView->setModel(tableModel);
-    }
+    ui->tableView->setModel(tableModel);
 }
 
 

@@ -9,7 +9,8 @@ class SalesModel
 public:
     static QSqlQuery list(QString searchFor);
     static SalesModel load(int id);
-    static QSqlQuery getDealerByMonth(QString year);
+    static QSqlQuery allSalesByMonth(QString year);
+    static QSqlQuery allSalesByYear(int limit);
 
     SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate);
     SalesModel(int id);

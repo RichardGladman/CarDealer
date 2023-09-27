@@ -46,7 +46,7 @@ SalesModel SalesModel::load(int id)
     return salesModel;
 }
 
-QSqlQuery SalesModel::getDealerByMonth(QString year)
+QSqlQuery SalesModel::allSalesByMonth(QString year)
 {
     QString sql = "SELECT YEAR(s.added_date) AS y, MONTH(s.added_date) AS m, count(s.id), sum(v.price) FROM sales s";
     sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
@@ -56,6 +56,23 @@ QSqlQuery SalesModel::getDealerByMonth(QString year)
     QSqlQuery query;
     query.prepare(sql);
     query.addBindValue(year);
+    query.exec();
+
+    return query;
+}
+
+QSqlQuery SalesModel::allSalesByYear(int limit)
+{
+    QString sql = "SELECT YEAR(s.added_date) AS y, count(s.id), sum(v.price) FROM sales s";
+    sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
+    sql += " GROUP BY y";
+
+    if (limit != 0) {
+        sql += " LIMIT " + QString::number(limit);
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
     query.exec();
 
     return query;

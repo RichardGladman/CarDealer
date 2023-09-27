@@ -30,7 +30,7 @@ void ReportCarDealerByMonthDialog::on_pushButtonRun_clicked()
         return;
     }
 
-    QSqlQuery query = SalesModel::getDealerByMonth(year);
+    QSqlQuery query = SalesModel::allSalesByMonth(year);
     QSqlQueryModel *tableModel = new QSqlQueryModel(this);
     tableModel->setQuery(std::move(query));
 
