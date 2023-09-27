@@ -13,6 +13,7 @@ public:
     static QSqlQuery allSalesByYear(int limit);
     static QSqlQuery customerByYear(QString year, int limit);
     static QSqlQuery sellerByMonth(QString year, QString month, int limit);
+    static QSqlQuery sellerByYear(QString year, int limit);
 
     SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate);
     SalesModel(int id);
