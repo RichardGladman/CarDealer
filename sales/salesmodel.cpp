@@ -78,6 +78,26 @@ QSqlQuery SalesModel::allSalesByYear(int limit)
     return query;
 }
 
+QSqlQuery SalesModel::customerByYear(QString year, int limit)
+{
+    QString startDate = year + "-01-01 00:00:00";
+    QString endDate = year + "-12-31 23:59:59";
+
+    QString sql = "SELECT c.name, count(s.id), sum(v.price) FROM sales s INNER JOIN customers c ON s.customer_id = c.id";
+    sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id WHERE s.added_date BETWEEN '" + startDate + "' AND '" + endDate + "'";
+    sql += " GROUP BY c.id";
+
+    if (limit != 0) {
+        sql += " LIMIT " + QString::number(limit);
+    }
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.exec();
+
+    return query;
+}
+
 SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate):
     id(id), customerId(customerId), vehicleId(vehicleId), sellerId(sellerId), registration(registration), addedDate(addedDate) {}
 
