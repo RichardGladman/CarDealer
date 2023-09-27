@@ -46,6 +46,21 @@ SalesModel SalesModel::load(int id)
     return salesModel;
 }
 
+QSqlQuery SalesModel::getDealerByMonth(QString year)
+{
+    QString sql = "SELECT YEAR(s.added_date) AS y, MONTH(s.added_date) AS m, count(s.id), sum(v.price) FROM sales s";
+    sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
+    sql += " WHERE y = ?";
+    sql += " GROUP BY y, m";
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(year);
+    query.exec();
+
+    return query;
+}
+
 SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate):
     id(id), customerId(customerId), vehicleId(vehicleId), sellerId(sellerId), registration(registration), addedDate(addedDate) {}
 

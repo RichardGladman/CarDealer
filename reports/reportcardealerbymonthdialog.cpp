@@ -5,6 +5,8 @@
 #include <QSqlQueryModel>
 #include <QMessageBox>
 
+#include "../sales/salesmodel.h"
+
 ReportCarDealerByMonthDialog::ReportCarDealerByMonthDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReportCarDealerByMonthDialog)
@@ -28,26 +30,17 @@ void ReportCarDealerByMonthDialog::on_pushButtonRun_clicked()
         return;
     }
 
-    QString sql = "SELECT YEAR(s.added_date) AS y, MONTH(s.added_date) AS m, count(s.id), sum(v.price) FROM sales s";
-    sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
-    sql += " GROUP BY y, m";
+    QSqlQuery query = SalesModel::getDealerByMonth(year);
+    QSqlQueryModel *tableModel = new QSqlQueryModel(this);
+    tableModel->setQuery(std::move(query));
 
-    QSqlQuery query;
-    query.prepare(sql);
-
-    if (query.exec()) {
-        QSqlQueryModel *tableModel = new QSqlQueryModel(this);
-        tableModel->setQuery(std::move(query));
-
-        tableModel->setHeaderData(0, Qt::Horizontal, "Year");
-        tableModel->setHeaderData(1, Qt::Horizontal, "Month");
-        tableModel->setHeaderData(2, Qt::Horizontal, "Total Sales");
-        tableModel->setHeaderData(3, Qt::Horizontal, "Total Sales Value");
+    tableModel->setHeaderData(0, Qt::Horizontal, "Year");
+    tableModel->setHeaderData(1, Qt::Horizontal, "Month");
+    tableModel->setHeaderData(2, Qt::Horizontal, "Total Sales");
+    tableModel->setHeaderData(3, Qt::Horizontal, "Total Sales Value");
 
 
-        ui->tableView->setModel(tableModel);
-    }
-
+    ui->tableView->setModel(tableModel);
 }
 
 
