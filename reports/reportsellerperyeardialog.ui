@@ -28,25 +28,12 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxTop"/>
-     </item>
-     <item row="2" column="1">
-      <widget class="QPushButton" name="pushButtonRun">
-       <property name="text">
-        <string>Run Report</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
+     <item row="2" column="0">
       <widget class="QLabel" name="label_4">
        <property name="text">
         <string>Limit</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="lineEditYear"/>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_3">
@@ -54,6 +41,29 @@
         <string>Year</string>
        </property>
       </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="pushButtonRun">
+       <property name="text">
+        <string>Run Report</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="comboBoxTop"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="lineEditYear"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Order</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboBoxOrder"/>
      </item>
     </layout>
    </item>
@@ -99,6 +109,14 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>lineEditYear</tabstop>
+  <tabstop>comboBoxOrder</tabstop>
+  <tabstop>comboBoxTop</tabstop>
+  <tabstop>pushButtonRun</tabstop>
+  <tabstop>pushButtonClose</tabstop>
+  <tabstop>tableView</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

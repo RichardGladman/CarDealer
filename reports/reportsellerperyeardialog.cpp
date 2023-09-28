@@ -13,6 +13,9 @@ ReportSellerPerYearDialog::ReportSellerPerYearDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->comboBoxOrder->addItem("Best To Worst", "best");
+    ui->comboBoxOrder->addItem("Worst To Best", "worst");
+
     ui->comboBoxTop->addItem("All", 0);
     ui->comboBoxTop->addItem("Top 1", 1);
     ui->comboBoxTop->addItem("Top 3", 3);
@@ -27,6 +30,7 @@ ReportSellerPerYearDialog::~ReportSellerPerYearDialog()
 
 void ReportSellerPerYearDialog::on_pushButtonRun_clicked()
 {
+    QString order = ui->comboBoxOrder->currentData().toString();
     int limit = ui->comboBoxTop->currentData().toInt();
     QString year = ui->lineEditYear->text();
 
@@ -37,7 +41,7 @@ void ReportSellerPerYearDialog::on_pushButtonRun_clicked()
         return;
     }
 
-    QSqlQuery query = SalesModel::sellerByYear(year, limit);
+    QSqlQuery query = SalesModel::sellerByYear(year, order, limit);
     QSqlQueryModel *tableModel = new QSqlQueryModel(this);
     tableModel->setQuery(std::move(query));
 
