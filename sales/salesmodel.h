@@ -11,7 +11,7 @@ public:
     static SalesModel load(int id);
     static QSqlQuery allSalesByMonth(QString year);
     static QSqlQuery allSalesByYear(int limit);
-    static QSqlQuery customerByYear(QString year, int limit);
+    static QSqlQuery customerByYear(QString year, QString order, int limit);
     static QSqlQuery sellerByMonth(QString year, QString month, QString order, int limit);
     static QSqlQuery sellerByYear(QString year, QString order, int limit);
 
