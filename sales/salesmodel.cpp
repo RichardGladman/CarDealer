@@ -50,7 +50,7 @@ QSqlQuery SalesModel::allSalesByMonth(QString year)
 {
     QString sql = "SELECT YEAR(s.added_date) AS y, MONTH(s.added_date) AS m, count(s.id), sum(v.price) FROM sales s";
     sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
-    sql += " WHERE y = ?";
+    sql += " WHERE YEAR(s.added_date) = ?";
     sql += " GROUP BY y, m";
 
     QSqlQuery query;
