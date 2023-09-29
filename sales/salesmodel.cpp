@@ -38,7 +38,7 @@ SalesModel SalesModel::load(int id)
     query.addBindValue(id);
 
     if (query.exec() && query.next()) {
-        SalesModel salesModel {id, query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt(), query.value(4).toString(), query.value(5).toString()};
+        SalesModel salesModel {id, query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt(), query.value(4).toString(), query.value(5).toString(), query.value(6).toDouble()};
         return salesModel;
     }
 
@@ -154,8 +154,8 @@ QSqlQuery SalesModel::sellerByYear(QString year, QString order, int limit)
     return query;
 }
 
-SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate):
-    id(id), customerId(customerId), vehicleId(vehicleId), sellerId(sellerId), registration(registration), addedDate(addedDate) {}
+SalesModel::SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate, double negotiatedPrice):
+    id(id), customerId(customerId), vehicleId(vehicleId), sellerId(sellerId), registration(registration), addedDate(addedDate), negotiatedPrice(negotiatedPrice) {}
 
 SalesModel::SalesModel(int id): id(id){}
 

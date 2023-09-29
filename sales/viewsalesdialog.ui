@@ -14,7 +14,7 @@
    <string>View Sales</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/images/deal.png</normaloff>:/images/deal.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -100,11 +100,22 @@
     </layout>
    </item>
    <item>
-    <widget class="QLabel" name="labelVehiclePrice">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="labelVehiclePrice">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="labelNegotiatedPrice">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QLabel" name="labelSaleDate">
@@ -186,7 +197,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>

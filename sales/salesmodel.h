@@ -15,7 +15,7 @@ public:
     static QSqlQuery sellerByMonth(QString year, QString month, QString order, int limit);
     static QSqlQuery sellerByYear(QString year, QString order, int limit);
 
-    SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate);
+    SalesModel(int id, int customerId, int vehicleId, int sellerId, QString registration, QString addedDate, double negotiatedPrice);
     SalesModel(int id);
     SalesModel();
 
@@ -26,6 +26,7 @@ public:
     int getSellerId() { return sellerId; }
     QString getRegistration() { return registration; }
     QString getAddedDate() { return addedDate; }
+    double getNegotiatedPrice() { return negotiatedPrice; }
 
 private:
     int id;
@@ -34,6 +35,7 @@ private:
     int sellerId;
     QString registration;
     QString addedDate;
+    double negotiatedPrice;
 };
 
 #endif // SALESMODEL_H

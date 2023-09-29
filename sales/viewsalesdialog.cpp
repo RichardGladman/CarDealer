@@ -28,6 +28,7 @@ ViewSalesDialog::ViewSalesDialog(int id, QWidget *parent) :
     ui->labelVehicleMiles->setText(QString::number(vehicle.getMiles(), 'f', 2));
     ui->labelVehicleCondition->setText(vehicle.getVehicleCondition());
     ui->labelVehiclePrice->setText(vehicle.getCurrency() + " " + QString::number(vehicle.getPrice(), 'f', 2));
+    ui->labelNegotiatedPrice->setText(vehicle.getCurrency() + " " + QString::number(salesModel.getNegotiatedPrice(), 'f', 2));
     ui->labelSaleDate->setText(salesModel.getAddedDate());
     ui->labelSellerName->setText(seller.getFirstName() + " " + seller.getLastName());
     ui->labelSellerEmail->setText(seller.getEmail());

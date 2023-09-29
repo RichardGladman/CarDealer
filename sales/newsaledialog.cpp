@@ -68,7 +68,7 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, ""};
+        SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, "", 0};
 
         if (sale.save()) {
             QMessageBox::information(this, "Sale completed", "Sale completed successfully");
