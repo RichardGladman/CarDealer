@@ -47,12 +47,18 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     QString sellerName = ui->comboBoxSeller->currentText();
 
     QString registration = ui->lineEditRegistration->text();
+    double negotiatedPrice = ui->lineEditNegotiatedPrice->text().toDouble();
+
+    if (registration == "" || negotiatedPrice == 0.0) {
+        QMessageBox::critical(this, "Input Error", "One or more fields has been left blank");
+        return;
+    }
 
     QString message = "Selling vehicle " + vehicleDescription;
     message += "\nwith registration " + registration;
     message += "\nto customer " + customerName;
     message += "\nby seller " + sellerName;
-
+    message += "\nnegotiated price " + QString::number(negotiatedPrice, 'f', 2);
 
     QMessageBox *msgbox = new QMessageBox(this);
     msgbox->setWindowTitle("Question");
@@ -68,7 +74,7 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     msgbox->exec();
 
     if (msgbox->clickedButton() == buttonYes) {
-        SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, "", 0};
+        SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, "", negotiatedPrice};
 
         if (sale.save()) {
             QMessageBox::information(this, "Sale completed", "Sale completed successfully");

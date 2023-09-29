@@ -1,5 +1,7 @@
 #include "salesmodel.h"
 
+#include <QDebug>
+
 QSqlQuery SalesModel::list(QString searchFor)
 {
     QString target = "%" + searchFor + "%";
@@ -164,15 +166,18 @@ SalesModel::SalesModel() {}
 bool SalesModel::save()
 {
     QSqlQuery insertQuery;
-    insertQuery.prepare("INSERT INTO sales(vehicle_id, customer_id, seller_id, registration) VALUES(?, ?, ?, ?)");
+    insertQuery.prepare("INSERT INTO sales(vehicle_id, customer_id, seller_id, registration, negotiated_price) VALUES(?, ?, ?, ?, ?)");
     insertQuery.addBindValue(vehicleId);
     insertQuery.addBindValue(customerId);
     insertQuery.addBindValue(sellerId);
     insertQuery.addBindValue(registration);
+    insertQuery.addBindValue(negotiatedPrice);
 
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE vehicles SET quantity = quantity - 1 WHERE id=?");
     updateQuery.addBindValue(vehicleId);
+
+    qDebug() << insertQuery.executedQuery();
 
     return insertQuery.exec() && updateQuery.exec();
 }

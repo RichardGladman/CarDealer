@@ -14,7 +14,7 @@
    <string>New Sale</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset resource="../resources.qrc">
     <normaloff>:/images/deal.png</normaloff>:/images/deal.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
@@ -27,18 +27,8 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <widget class="QComboBox" name="comboBoxVehicle"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
-       <property name="text">
-        <string>Customer</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="comboBoxCustomer"/>
+     <item row="2" column="2">
+      <widget class="QComboBox" name="comboBoxSeller"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel" name="label_3">
@@ -47,8 +37,11 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="comboBoxSeller"/>
+     <item row="1" column="2">
+      <widget class="QComboBox" name="comboBoxCustomer"/>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLineEdit" name="lineEditRegistration"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_4">
@@ -57,8 +50,25 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEditRegistration"/>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_2">
+       <property name="text">
+        <string>Customer</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Negotiated Price</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="comboBoxVehicle"/>
+     </item>
+     <item row="4" column="2">
+      <widget class="QLineEdit" name="lineEditNegotiatedPrice"/>
      </item>
     </layout>
    </item>
@@ -109,7 +119,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="resources.qrc"/>
+  <include location="../resources.qrc"/>
  </resources>
  <connections/>
 </ui>
