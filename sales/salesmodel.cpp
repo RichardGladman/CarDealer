@@ -65,7 +65,7 @@ QSqlQuery SalesModel::allSalesByMonth(QString year)
 
 QSqlQuery SalesModel::allSalesByYear(int limit)
 {
-    QString sql = "SELECT YEAR(s.added_date) AS y, count(s.id), sum(v.price) FROM sales s";
+    QString sql = "SELECT YEAR(s.added_date) AS y, count(s.id), sum(v.price), sum(s.negotiated_price) FROM sales s";
     sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id";
     sql += " GROUP BY y";
 
