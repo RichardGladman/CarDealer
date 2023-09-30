@@ -49,6 +49,7 @@ void ReportSellerPerYearDialog::on_pushButtonRun_clicked()
     tableModel->setHeaderData(1, Qt::Horizontal, "Seller Last Name");
     tableModel->setHeaderData(2, Qt::Horizontal, "Total Sales");
     tableModel->setHeaderData(3, Qt::Horizontal, "Total Sales Value");
+    tableModel->setHeaderData(4, Qt::Horizontal, "Negotiated Sales Value");
 
     ui->tableView->setModel(tableModel);
 }
