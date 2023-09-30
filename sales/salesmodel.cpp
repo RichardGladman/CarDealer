@@ -85,7 +85,7 @@ QSqlQuery SalesModel::customerByYear(QString year, QString order, int limit)
     QString startDate = year + "-01-01 00:00:00";
     QString endDate = year + "-12-31 23:59:59";
 
-    QString sql = "SELECT c.name, count(s.id), sum(v.price) AS total FROM sales s INNER JOIN customers c ON s.customer_id = c.id";
+    QString sql = "SELECT c.name, count(s.id), sum(v.price) AS total, sum(s.negotiated_price) FROM sales s INNER JOIN customers c ON s.customer_id = c.id";
     sql += " INNER JOIN vehicles v ON s.vehicle_id = v.id WHERE s.added_date BETWEEN '" + startDate + "' AND '" + endDate + "'";
     sql += " GROUP BY c.id";
     sql += " ORDER BY total";
