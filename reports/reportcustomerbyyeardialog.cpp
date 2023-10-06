@@ -6,12 +6,19 @@
 #include <QMessageBox>
 
 #include "../sales/salesmodel.h"
+#include "../delegates/currencydelegate.h"
 
 ReportCustomerByYearDialog::ReportCustomerByYearDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReportCustomerByYearDialog)
 {
     ui->setupUi(this);
+
+    CurrencyDelegate *salesDelegate = new CurrencyDelegate(this);
+    salesDelegate->setColumn(2);
+
+    CurrencyDelegate *negotiatedDelegate = new CurrencyDelegate(this);
+    negotiatedDelegate->setColumn(3);
 
     ui->comboBoxOrder->addItem("Best To Worst", "best");
     ui->comboBoxOrder->addItem("Worst To Best", "worst");
@@ -21,6 +28,9 @@ ReportCustomerByYearDialog::ReportCustomerByYearDialog(QWidget *parent) :
     ui->comboBoxTop->addItem("Top 3", 3);
     ui->comboBoxTop->addItem("Top 5", 5);
     ui->comboBoxTop->addItem("Top 10", 10);
+
+    ui->tableView->setItemDelegateForColumn(2, salesDelegate);
+    ui->tableView->setItemDelegateForColumn(3, negotiatedDelegate);
 }
 
 ReportCustomerByYearDialog::~ReportCustomerByYearDialog()

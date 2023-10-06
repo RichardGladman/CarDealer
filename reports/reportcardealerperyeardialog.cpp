@@ -6,6 +6,7 @@
 #include <QMessageBox>
 
 #include "../sales/salesmodel.h"
+#include "../delegates/currencydelegate.h"
 
 ReportCarDealerPerYearDialog::ReportCarDealerPerYearDialog(QWidget *parent) :
     QDialog(parent),
@@ -13,11 +14,21 @@ ReportCarDealerPerYearDialog::ReportCarDealerPerYearDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    CurrencyDelegate *salesDelegate = new CurrencyDelegate(this);
+    salesDelegate->setColumn(2);
+
+    CurrencyDelegate *negotiatedDelegate = new CurrencyDelegate(this);
+    negotiatedDelegate->setColumn(3);
+
     ui->comboBoxTop->addItem("All", 0);
     ui->comboBoxTop->addItem("Latest 1", 1);
     ui->comboBoxTop->addItem("Latest 3", 3);
     ui->comboBoxTop->addItem("Latest 5", 5);
     ui->comboBoxTop->addItem("Latest 10", 10);
+
+    ui->tableView->setItemDelegateForColumn(2, salesDelegate);
+    ui->tableView->setItemDelegateForColumn(3, negotiatedDelegate);
+
 }
 
 ReportCarDealerPerYearDialog::~ReportCarDealerPerYearDialog()

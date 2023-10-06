@@ -6,12 +6,23 @@
 #include <QMessageBox>
 
 #include "../sales/salesmodel.h"
+#include "../delegates/currencydelegate.h"
 
 ReportCarDealerByMonthDialog::ReportCarDealerByMonthDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReportCarDealerByMonthDialog)
 {
     ui->setupUi(this);
+
+    CurrencyDelegate *salesDelegate = new CurrencyDelegate(this);
+    salesDelegate->setColumn(3);
+
+    CurrencyDelegate *negotiatedDelegate = new CurrencyDelegate(this);
+    negotiatedDelegate->setColumn(4);
+
+    ui->tableView->setItemDelegateForColumn(3, salesDelegate);
+    ui->tableView->setItemDelegateForColumn(4, negotiatedDelegate);
+
 }
 
 ReportCarDealerByMonthDialog::~ReportCarDealerByMonthDialog()

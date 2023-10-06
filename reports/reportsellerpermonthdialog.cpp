@@ -6,10 +6,17 @@
 #include <QMessageBox>
 
 #include "../sales/salesmodel.h"
+#include "../delegates/currencydelegate.h"
 
 ReportSellerPerMonthDialog::ReportSellerPerMonthDialog(QWidget *parent) : QDialog(parent), ui(new Ui::ReportSellerPerMonthDialog)
 {
     ui->setupUi(this);
+
+    CurrencyDelegate *salesDelegate = new CurrencyDelegate(this);
+    salesDelegate->setColumn(3);
+
+    CurrencyDelegate *negotiatedDelegate = new CurrencyDelegate(this);
+    negotiatedDelegate->setColumn(4);
 
     ui->comboBoxMonth->addItem("January", 1);
     ui->comboBoxMonth->addItem("February", 2);
@@ -32,6 +39,9 @@ ReportSellerPerMonthDialog::ReportSellerPerMonthDialog(QWidget *parent) : QDialo
     ui->comboBoxTop->addItem("Top 3", 3);
     ui->comboBoxTop->addItem("Top 5", 5);
     ui->comboBoxTop->addItem("Top 10", 10);
+
+    ui->tableView->setItemDelegateForColumn(3, salesDelegate);
+    ui->tableView->setItemDelegateForColumn(4, negotiatedDelegate);
 }
 
 ReportSellerPerMonthDialog::~ReportSellerPerMonthDialog()
