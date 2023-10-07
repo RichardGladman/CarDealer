@@ -18,6 +18,10 @@
 #include "reports/reportcardealerperyeardialog.h"
 #include "reports/reportcardealerbymonthdialog.h"
 
+#include "settings/settings.h"
+
+Settings *settings;
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -25,15 +29,20 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    QSettings settings("TheFifthContinent", "CarDealer");
+    QSettings qSettings("TheFifthContinent", "CarDealer");
 
-    settings.beginGroup("Database");
-    QString server = settings.value("server").toString();
-    QString database = settings.value("database").toString();
-    QString username = settings.value("username").toString();
-    QString password = settings.value("password").toString();
-    settings.endGroup();
+    qSettings.beginGroup("Database");
+    QString server = qSettings.value("server").toString();
+    QString database = qSettings.value("database").toString();
+    QString username = qSettings.value("username").toString();
+    QString password = qSettings.value("password").toString();
+    qSettings.endGroup();
 
+    qSettings.beginGroup("General");
+    QString currency = qSettings.value("currency").toString();
+    qSettings.endGroup();
+
+    settings = new Settings {server, database, username, password, currency};
 
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     db.setHostName(server);

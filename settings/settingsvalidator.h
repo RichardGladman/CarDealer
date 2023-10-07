@@ -6,7 +6,7 @@
 class SettingsValidator
 {
 public:
-    SettingsValidator(QString server, QString database, QString username, QString password);
+    SettingsValidator(QString server, QString database, QString username, QString password, QString currency);
     bool validate(QString &message);
 
 private:
@@ -14,6 +14,7 @@ private:
     QString database;
     QString username;
     QString password;
+    QString currency;
 };
 
 #endif // SETTINGSVALIDATOR_H

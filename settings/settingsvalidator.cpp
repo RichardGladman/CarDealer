@@ -1,6 +1,7 @@
 #include "settingsvalidator.h"
 
-SettingsValidator::SettingsValidator(QString server, QString database, QString username, QString password): server(server), database(database), username(username), password(password) {}
+SettingsValidator::SettingsValidator(QString server, QString database, QString username, QString password, QString currency):
+    server(server), database(database), username(username), password(password), currency(currency) {}
 
 bool SettingsValidator::validate(QString &message)
 {
@@ -24,6 +25,11 @@ bool SettingsValidator::validate(QString &message)
     if (password == "") {
         valid = false;
         message += "\nPassword cannot be left blank";
+    }
+
+    if (currency == "") {
+        valid = false;
+        message += "\nCurrency cannot be left blank";
     }
 
     return valid;

@@ -20,6 +20,10 @@ SettingsFrame::SettingsFrame(QWidget *parent) :
     ui->lineEditUser->setText(settings.value("username").toString());
     ui->lineEditPassword->setText(settings.value("password").toString());
     settings.endGroup();
+
+    settings.beginGroup("General");
+    ui->lineEditCurrency->setText(settings.value("currency").toString());
+    settings.endGroup();
 }
 
 SettingsFrame::~SettingsFrame()
@@ -33,8 +37,9 @@ void SettingsFrame::on_pushButtonSave_clicked()
     QString database = ui->lineEditDatabase->text();
     QString username = ui->lineEditUser->text();
     QString password = ui->lineEditPassword->text();
+    QString currency = ui->lineEditCurrency->text();
 
-    SettingsValidator validator {server, database,username, password};
+    SettingsValidator validator {server, database,username, password, currency};
     QString message;
 
     if (!validator.validate(message)) {
@@ -49,6 +54,10 @@ void SettingsFrame::on_pushButtonSave_clicked()
     settings.setValue("database", database);
     settings.setValue("username", username);
     settings.setValue("password", password);
+    settings.endGroup();
+
+    settings.beginGroup("General");
+    settings.setValue("currency", currency);
     settings.endGroup();
 }
 

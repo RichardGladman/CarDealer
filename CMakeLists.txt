@@ -54,6 +54,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         vehicles/vehicle.h vehicles/vehicle.cpp
         sales/salesmodel.h sales/salesmodel.cpp
         delegates/currencydelegate.h delegates/currencydelegate.cpp
+        settings/settings.h settings/settings.cpp
 
     )
 # Define target properties for Android with Qt 6 as:
