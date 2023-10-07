@@ -4,9 +4,12 @@
 #include <QSqlQuery>
 
 #include "vehicle.h"
+#include "../settings/settings.h"
 
 ViewVehicleDialog::ViewVehicleDialog(int vehicleId, QWidget *parent) : QDialog(parent), ui(new Ui::ViewVehicleDialog)
 {
+    extern Settings *settings;
+
     ui->setupUi(this);
 
     Vehicle vehicle = Vehicle::load(vehicleId);
@@ -18,7 +21,7 @@ ViewVehicleDialog::ViewVehicleDialog(int vehicleId, QWidget *parent) : QDialog(p
     ui->labelCondition->setText(vehicle.getVehicleCondition());
     ui->labelDrive->setText(vehicle.getDrive());
     ui->labelQuantity->setText(QString::number(vehicle.getQuantity()));
-    ui->labelPrice->setText(vehicle.getCurrency() + " " + QString::number(vehicle.getPrice(), 'f', 2));
+    ui->labelPrice->setText(settings->getCurrency() + " " + QString::number(vehicle.getPrice(), 'f', 2));
 
     QPixmap pixmap = QPixmap();
     pixmap.loadFromData(vehicle.getPictureBytes());
