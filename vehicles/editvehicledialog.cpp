@@ -22,7 +22,7 @@ EditVehicleDialog::EditVehicleDialog(int vehicleId, QWidget *parent) : QDialog(p
 
     if (query.exec()) {
         if (query.next()) {
-            ui->lineEditVehicleName->setText(query.value(10).toString());
+            ui->lineEditVehicleName->setText(query.value(9).toString());
             ui->lineEditManufacturer->setText(query.value(1).toString());
             ui->lineEditYear->setText(query.value(2).toString());
             ui->lineEditMiles->setText(query.value(3).toString());
@@ -30,7 +30,6 @@ EditVehicleDialog::EditVehicleDialog(int vehicleId, QWidget *parent) : QDialog(p
             ui->comboBoxDrive->setCurrentText(query.value(5).toString());
             ui->lineEditQuantity->setText(query.value(6).toString());
             ui->lineEditPrice->setText(query.value(7).toString());
-            ui->comboBoxCurrency->setCurrentText(query.value(8).toString());
         }
     }
 }
@@ -50,10 +49,9 @@ void EditVehicleDialog::on_pushButtonSave_clicked()
     QString drive = ui->comboBoxDrive->currentText();
     int quantity = ui->lineEditQuantity->text().toInt();
     double price = ui->lineEditPrice->text().toDouble();
-    QString currency = ui->comboBoxCurrency->currentText();
     QString picture = ui->lineEditImage->text();
 
-    Vehicle vehicle {vehicleId, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, currency, picture};
+    Vehicle vehicle {vehicleId, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, picture};
     VehicleValidator validator {vehicle};
     QString message;
 

@@ -13,7 +13,7 @@ public:
     static QVector<Vehicle> list();
 
     Vehicle(int id, QString name, QString manufacturer, QString yearOfManufacture, double miles, QString vehicleCondition,
-            QString drive, int quantity, double price, QString currency, QString picture, QByteArray pictureBytes = QByteArray());
+            QString drive, int quantity, double price, QString picture, QByteArray pictureBytes = QByteArray());
     Vehicle(int id);
     Vehicle();
 
@@ -29,7 +29,6 @@ public:
     QString getDrive() { return drive; }
     int getQuantity() { return quantity; }
     double getPrice() { return price; }
-    QString getCurrency() { return currency; }
     QString getPicture() { return picture; }
     QByteArray getPictureBytes() { return pictureBytes; }
 
@@ -43,7 +42,6 @@ private:
     QString drive;
     int quantity;
     double price;
-    QString currency;
     QString picture;
     QByteArray pictureBytes;
 };

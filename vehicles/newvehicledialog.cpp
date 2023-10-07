@@ -33,10 +33,9 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
     QString drive = ui->comboBoxDrive->currentText();
     int quantity = ui->lineEditQuantity->text().toInt();
     double price = ui->lineEditPrice->text().toDouble();
-    QString currency = ui->comboBoxCurrency->currentText();
     QString picture = ui->lineEditImage->text();
 
-    Vehicle vehicle {0, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, currency, picture};
+    Vehicle vehicle {0, vehicleName, manufacturer, year, miles, condition, drive, quantity, price, picture};
     VehicleValidator validator {vehicle};
     QString message;
 
@@ -57,7 +56,6 @@ void NewVehicleDialog::on_pushButtonSave_clicked()
         ui->lineEditImage->clear();
         ui->comboBoxCondition->setCurrentIndex(0);
         ui->comboBoxDrive->setCurrentIndex(0);
-        ui->comboBoxCurrency->setCurrentIndex(0);
     } else {
         QMessageBox::critical(this, "Error", "Vehicle not saved\n\n");
     }

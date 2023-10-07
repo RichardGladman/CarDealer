@@ -21,7 +21,7 @@ CREATE TABLE `sales` (
   `added_date` datetime DEFAULT curtime(),
   `negotiated_price` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- CarDealer.sellers definition
@@ -47,7 +47,6 @@ CREATE TABLE `vehicles` (
   `drive` varchar(3) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
-  `currency` varchar(1) DEFAULT NULL,
   `picture` longblob DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
