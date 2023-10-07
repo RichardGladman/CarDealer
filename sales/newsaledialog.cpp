@@ -8,14 +8,17 @@
 #include "../customers/customer.h"
 #include "../sellers/seller.h"
 #include "salesmodel.h"
+#include "../settings/settings.h"
 
 NewSaleDialog::NewSaleDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewSaleDialog)
 {
+    extern Settings *settings;
+
     ui->setupUi(this);
 
     QVector<Vehicle> vehicles = Vehicle::list();
     for (Vehicle vehicle: vehicles) {
-        QString information = vehicle.getName() + " (" + vehicle.getYearOfManufacture() + " " + vehicle.getDrive() + ") " + vehicle.getCurrency() + QString::number(vehicle.getPrice(), 'f', 2);
+        QString information = vehicle.getName() + " (" + vehicle.getYearOfManufacture() + " " + vehicle.getDrive() + ") " + settings->getCurrency() + QString::number(vehicle.getPrice(), 'f', 2);
         ui->comboBoxVehicle->addItem(information, vehicle.getId());
     }
 
