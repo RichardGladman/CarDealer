@@ -21,7 +21,7 @@ CREATE TABLE `sales` (
   `added_date` datetime DEFAULT curtime(),
   `negotiated_price` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- CarDealer.sellers definition
@@ -50,4 +50,18 @@ CREATE TABLE `vehicles` (
   `picture` longblob DEFAULT NULL,
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- CarDealer.part_exchanges definition
+
+CREATE TABLE `part_exchanges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Make` varchar(100) DEFAULT NULL,
+  `Model` varchar(100) DEFAULT NULL,
+  `registration` varchar(100) DEFAULT NULL,
+  `miles` float DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `sales_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
