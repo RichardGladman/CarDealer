@@ -24,7 +24,8 @@ PartExchangeFrame::~PartExchangeFrame()
 
 void PartExchangeFrame::on_pushButtonSearch_clicked()
 {
-
+    searchFor = ui->lineEditSearchFor->text();
+    loadData();
 }
 
 
