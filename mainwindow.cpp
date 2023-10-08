@@ -11,6 +11,7 @@
 #include "vehicles/vehiclesframe.h"
 #include "sellers/sellerframe.h"
 #include "customers/customersframe.h"
+#include "partexchange/partexchangeframe.h"
 #include "sales/salesframe.h"
 #include "reports/reportsellerpermonthdialog.h"
 #include "reports/reportsellerperyeardialog.h"
@@ -153,3 +154,10 @@ void MainWindow::on_actionDealer_By_Month_triggered()
     ReportCarDealerByMonthDialog *carDealerDialog = new ReportCarDealerByMonthDialog(this);
     carDealerDialog->exec();
 }
+
+void MainWindow::on_actionPart_Exchanges_triggered()
+{
+    PartExchangeFrame *partExchanges = new PartExchangeFrame(this);
+    setCentralWidget(partExchanges);
+}
+

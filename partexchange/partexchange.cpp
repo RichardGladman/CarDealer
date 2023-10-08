@@ -23,7 +23,7 @@ QSqlQuery PartExchange::list(QString searchFor)
 {
     QString target = "%" + searchFor + "%";
 
-    QString sql = "SELECT pe.*, v.make AS vmake, v.model AS vmodel FROM part_exchanges pe INNER JOIN vehicles v ON pe.sales_id = v.id";
+    QString sql = "SELECT id, make, model, registration, price FROM part_exchanges";
     if (searchFor != "") {
         sql += " WHERE make LIKE ? OR model like ? or registration LIKE ?";
     }

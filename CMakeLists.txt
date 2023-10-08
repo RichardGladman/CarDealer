@@ -56,6 +56,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         delegates/currencydelegate.h delegates/currencydelegate.cpp
         settings/settings.h settings/settings.cpp
         partexchange/partexchange.h partexchange/partexchange.cpp
+        partexchange/partexchangeframe.h partexchange/partexchangeframe.cpp partexchange/partexchangeframe.ui
 
     )
 # Define target properties for Android with Qt 6 as:

@@ -55,6 +55,7 @@
      <string>Sales</string>
     </property>
     <addaction name="actionSell_Vehicle"/>
+    <addaction name="actionPart_Exchanges"/>
    </widget>
    <widget class="QMenu" name="menuReports">
     <property name="title">
@@ -77,8 +78,7 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSettings">
    <property name="icon">
-    <iconset theme="preferences-system">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="preferences-system"/>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -86,8 +86,7 @@
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>About</string>
@@ -95,8 +94,7 @@
   </action>
   <action name="actionAbout_Qt">
    <property name="icon">
-    <iconset theme="help-about">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-about"/>
    </property>
    <property name="text">
     <string>About Qt</string>
@@ -104,8 +102,7 @@
   </action>
   <action name="actionExit">
    <property name="icon">
-    <iconset theme="application-exit">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="application-exit"/>
    </property>
    <property name="text">
     <string>Exit</string>
@@ -190,6 +187,15 @@
    </property>
    <property name="text">
     <string>Dealer By Month</string>
+   </property>
+  </action>
+  <action name="actionPart_Exchanges">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/images/bugatti.png</normaloff>:/images/bugatti.png</iconset>
+   </property>
+   <property name="text">
+    <string>Part Exchanges</string>
    </property>
   </action>
  </widget>

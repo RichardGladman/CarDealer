@@ -43,6 +43,8 @@ private slots:
 
     void on_actionDealer_By_Month_triggered();
 
+    void on_actionPart_Exchanges_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
