@@ -21,6 +21,7 @@ public:
 
     bool save();
 
+    int getId() { return id; }
     int getCustomerId() { return customerId; }
     int getVehicleId() { return vehicleId; }
     int getSellerId() { return sellerId; }

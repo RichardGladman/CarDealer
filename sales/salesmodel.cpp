@@ -179,5 +179,10 @@ bool SalesModel::save()
 
     qDebug() << insertQuery.executedQuery();
 
-    return insertQuery.exec() && updateQuery.exec();
+    bool inserted = insertQuery.exec();
+    if (inserted) {
+        id = insertQuery.lastInsertId().toInt();
+    }
+
+    return inserted && updateQuery.exec();
 }

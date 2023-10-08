@@ -9,6 +9,7 @@
 #include "../sellers/seller.h"
 #include "salesmodel.h"
 #include "../settings/settings.h"
+#include "../partexchange/partexchange.h";
 
 NewSaleDialog::NewSaleDialog(QWidget *parent) : QDialog(parent), ui(new Ui::NewSaleDialog)
 {
@@ -52,9 +53,26 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     QString registration = ui->lineEditRegistration->text();
     double negotiatedPrice = ui->lineEditNegotiatedPrice->text().toDouble();
 
+    QString partExMake = ui->lineEditMake->text();
+    QString partExModel = ui->lineEditModel->text();
+    QString partExRegistration = ui->lineEditPartExRegistration->text();
+    double partExMiles = ui->lineEditMiles->text().toDouble();
+    double partExPrice = ui->lineEditBuyingPrice->text().toDouble();
+
     if (registration == "" || negotiatedPrice == 0.0) {
-        QMessageBox::critical(this, "Input Error", "One or more fields has been left blank");
+        QMessageBox::critical(this, "Input Error", "One or more sale fields has been left blank");
         return;
+    }
+
+    bool includePartEx {false};
+
+    //  If any part exchange info filled in, it must all be
+    if (partExMake != "" || partExModel != "" || partExRegistration != "" || partExMiles != 0.0 || partExPrice != 0.0) {
+        includePartEx = true;
+        if (partExMake == "" || partExModel == "" || partExRegistration == "" || partExMiles == 0.0 || partExPrice == 0.0) {
+            QMessageBox::critical(this, "Input error", "All part exchange information must be provided");
+            return;
+        }
     }
 
     QString message = "Selling vehicle " + vehicleDescription;
@@ -62,6 +80,13 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
     message += "\nto customer " + customerName;
     message += "\nby seller " + sellerName;
     message += "\nnegotiated price " + QString::number(negotiatedPrice, 'f', 2);
+
+    if (includePartEx) {
+        message += "\n\nPart Exchange";
+        message += "\n" + partExMake + " " + partExModel + QString::number(partExMiles, 'f', 2);
+        message += "\n" + partExRegistration;
+        message += "\n" + QString::number(partExPrice, 'f', 2);
+    }
 
     QMessageBox *msgbox = new QMessageBox(this);
     msgbox->setWindowTitle("Question");
@@ -80,6 +105,10 @@ void NewSaleDialog::on_pushButtonSubmit_clicked()
         SalesModel sale = SalesModel {0, customerId, vehicleId, sellerId, registration, "", negotiatedPrice};
 
         if (sale.save()) {
+            if (includePartEx) {
+                PartExchange partExchange {0, partExMake, partExModel, partExRegistration, partExMiles, partExPrice, sale.getId()};
+                partExchange.save();
+            }
             QMessageBox::information(this, "Sale completed", "Sale completed successfully");
         } else {
             QMessageBox::critical(this, "Error", "Sale not completed");
