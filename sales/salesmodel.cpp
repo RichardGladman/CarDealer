@@ -40,7 +40,7 @@ SalesModel SalesModel::load(int id)
     query.addBindValue(id);
 
     if (query.exec() && query.next()) {
-        SalesModel salesModel {id, query.value(1).toInt(), query.value(2).toInt(), query.value(3).toInt(), query.value(4).toString(), query.value(5).toString(), query.value(6).toDouble()};
+        SalesModel salesModel {id, query.value(2).toInt(), query.value(1).toInt(), query.value(3).toInt(), query.value(4).toString(), query.value(5).toString(), query.value(6).toDouble()};
         return salesModel;
     }
 
