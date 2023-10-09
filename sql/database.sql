@@ -21,7 +21,7 @@ CREATE TABLE `sales` (
   `added_date` datetime DEFAULT curtime(),
   `negotiated_price` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- CarDealer.sellers definition
@@ -63,5 +63,6 @@ CREATE TABLE `part_exchanges` (
   `miles` float DEFAULT NULL,
   `price` float DEFAULT NULL,
   `sales_id` int(11) DEFAULT NULL,
+  `auctioned` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
