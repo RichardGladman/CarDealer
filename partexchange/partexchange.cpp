@@ -53,9 +53,15 @@ PartExchange::PartExchange()
 
 }
 
-bool PartExchange::auction()
+bool PartExchange::auction(int auctioned)
 {
-    QString sql = "UPDATE part_exchanges SET auctioned = 1 WHERE id = ?";
+    QString sql;
+
+    if (auctioned == 0) {
+        sql = "UPDATE part_exchanges SET auctioned = 1 WHERE id = ?";
+    } else {
+        sql = "UPDATE part_exchanges SET auctioned = 0 where id = ?";
+    }
 
     QSqlQuery query;
     query.prepare(sql);

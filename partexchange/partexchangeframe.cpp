@@ -51,11 +51,11 @@ void PartExchangeFrame::on_pushButtonAuction_clicked()
     }
 
     PartExchange pe = PartExchange(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
-    if (pe.auction()) {
-        QMessageBox::information(this, "Success", "Vehicle auctioned");
+    if (pe.auction(ui->tableView->model()->index(selectedRows.at(0).row(), 5).data().toInt())) {
         loadData();
+        on_tableView_clicked(ui->tableView->model()->index(selectedRows.at(0).row(), 0));
     } else {
-        QMessageBox::critical(this, "Error", "Vehicle not auctioned");
+        QMessageBox::critical(this, "Error", "Vehicle not updated");
     }
 
 }
@@ -83,5 +83,15 @@ void PartExchangeFrame::loadData()
     ui->tableView->setItemDelegateForColumn(5, booleanDelegate);
 
 
+}
+
+
+void PartExchangeFrame::on_tableView_clicked(const QModelIndex &index)
+{
+    if (index.siblingAtColumn(5).data().toInt() == 1) {
+        ui->pushButtonAuction->setText("Pull From Auction");
+    } else {
+        ui->pushButtonAuction->setText("Auction");
+    }
 }
 

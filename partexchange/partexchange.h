@@ -14,7 +14,7 @@ public:
     PartExchange(int id);
     PartExchange();
 
-    bool auction();
+    bool auction(int auctioned);
 
     int getId() const;
     QString getMake() const;

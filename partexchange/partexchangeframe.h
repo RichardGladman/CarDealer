@@ -24,6 +24,8 @@ private slots:
 
     void on_pushButtonAuction_clicked();
 
+    void on_tableView_clicked(const QModelIndex &index);
+
 private:
     QString searchFor;
     Ui::PartExchangeFrame *ui;
