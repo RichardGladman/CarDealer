@@ -3,6 +3,7 @@
 
 #include <QSqlQuery>
 #include <QSqlQueryModel>
+#include <QMessageBox>
 
 #include "partexchange.h"
 #include "../delegates/currencydelegate.h"
@@ -44,6 +45,18 @@ void PartExchangeFrame::on_pushButtonStock_clicked()
 
 void PartExchangeFrame::on_pushButtonAuction_clicked()
 {
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
+
+    PartExchange pe = PartExchange(ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt());
+    if (pe.auction()) {
+        QMessageBox::information(this, "Success", "Vehicle auctioned");
+        loadData();
+    } else {
+        QMessageBox::critical(this, "Error", "Vehicle not auctioned");
+    }
 
 }
 

@@ -53,6 +53,17 @@ PartExchange::PartExchange()
 
 }
 
+bool PartExchange::auction()
+{
+    QString sql = "UPDATE part_exchanges SET auctioned = 1 WHERE id = ?";
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(id);
+
+    return query.exec();
+}
+
 int PartExchange::getId() const
 {
     return id;
@@ -93,7 +104,7 @@ bool PartExchange::save()
     QString sql;
 
     if (id == 0) {
-        sql = "INSERT INTO part_exchanges(make, model, registration, miles, price, sales_id) VALUES(?, ?, ?, ?, ?, ?)";
+        sql = "INSERT INTO part_exchanges(make, model, registration, miles, price, sales_id, auctioned) VALUES(?, ?, ?, ?, ?, ?, 0)";
     } else {
         sql = "UPDATE part_exchanges SET make=?, model=?, registration=?, miles=?, price=?, sales_id=? WHERE id=?";
     }
