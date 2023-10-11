@@ -6,6 +6,7 @@
 
 #include "partexchange.h"
 #include "../delegates/currencydelegate.h"
+#include "../delegates//booleandelegate.h"
 
 
 PartExchangeFrame::PartExchangeFrame(QWidget *parent) :
@@ -57,12 +58,17 @@ void PartExchangeFrame::loadData()
     tableModel->setHeaderData(2, Qt::Horizontal, "Model");
     tableModel->setHeaderData(3, Qt::Horizontal, "Registration");
     tableModel->setHeaderData(4, Qt::Horizontal, "Price");
+    tableModel->setHeaderData(5, Qt::Horizontal, "Autioned");
 
     CurrencyDelegate *priceDelegate = new CurrencyDelegate(this);
     priceDelegate->setColumn(4);
 
+    BooleanDelegate *booleanDelegate = new BooleanDelegate(5, this);
+
     ui->tableView->setModel(tableModel);
     ui->tableView->setItemDelegateForColumn(4, priceDelegate);
+    ui->tableView->setItemDelegateForColumn(5, booleanDelegate);
+
 
 }
 

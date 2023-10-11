@@ -23,7 +23,7 @@ QSqlQuery PartExchange::list(QString searchFor)
 {
     QString target = "%" + searchFor + "%";
 
-    QString sql = "SELECT id, make, model, registration, price FROM part_exchanges";
+    QString sql = "SELECT id, make, model, registration, price, auctioned FROM part_exchanges";
     if (searchFor != "") {
         sql += " WHERE make LIKE ? OR model like ? or registration LIKE ?";
     }
