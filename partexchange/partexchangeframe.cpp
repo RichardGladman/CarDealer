@@ -72,15 +72,15 @@ void PartExchangeFrame::loadData()
     tableModel->setHeaderData(3, Qt::Horizontal, "Registration");
     tableModel->setHeaderData(4, Qt::Horizontal, "Price");
     tableModel->setHeaderData(5, Qt::Horizontal, "Autioned");
+    tableModel->setHeaderData(6, Qt::Horizontal, "Stocked");
 
     CurrencyDelegate *priceDelegate = new CurrencyDelegate(this);
     priceDelegate->setColumn(4);
 
-    BooleanDelegate *booleanDelegate = new BooleanDelegate(5, this);
-
     ui->tableView->setModel(tableModel);
     ui->tableView->setItemDelegateForColumn(4, priceDelegate);
-    ui->tableView->setItemDelegateForColumn(5, booleanDelegate);
+    ui->tableView->setItemDelegateForColumn(5, new BooleanDelegate(5, this));
+    ui->tableView->setItemDelegateForColumn(6, new BooleanDelegate(6, this));
 
 
 }
@@ -90,8 +90,18 @@ void PartExchangeFrame::on_tableView_clicked(const QModelIndex &index)
 {
     if (index.siblingAtColumn(5).data().toInt() == 1) {
         ui->pushButtonAuction->setText("Pull From Auction");
+        ui->pushButtonStock->setDisabled(true);
     } else {
         ui->pushButtonAuction->setText("Auction");
+        ui->pushButtonStock->setDisabled(false);
+    }
+
+    if (index.siblingAtColumn(6).data().toInt() == 1) {
+        ui->pushButtonStock->setText("Pull From Stock");
+        ui->pushButtonAuction->setDisabled(true);
+    } else {
+        ui->pushButtonStock->setText("Add To Stock");
+        ui->pushButtonAuction->setDisabled(false);
     }
 }
 
