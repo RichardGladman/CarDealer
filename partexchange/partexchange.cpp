@@ -1,5 +1,7 @@
 #include "partexchange.h"
 
+#include "../vehicles/vehicle.h"
+
 PartExchange PartExchange::load(int id)
 {
 
@@ -65,6 +67,24 @@ bool PartExchange::auction(int auctioned)
 
     QSqlQuery query;
     query.prepare(sql);
+    query.addBindValue(id);
+
+    return query.exec();
+}
+
+bool PartExchange::addToStock(int stocked, int &vehicle_id)
+{
+    QString sql;
+    Vehicle vehicle {};
+
+    vehicle = {0, model, make, "", miles, "Used", "", 1, 0.0, "", QByteArray()};
+    vehicle.save();
+    vehicle_id = vehicle.getId();
+    sql = "UPDATE part_exchanges SET stocked = 1, vehicle_id=? WHERE id = ?";
+
+    QSqlQuery query;
+    query.prepare(sql);
+    query.addBindValue(vehicle.getId());
     query.addBindValue(id);
 
     return query.exec();

@@ -8,6 +8,7 @@
 #include "partexchange.h"
 #include "../delegates/currencydelegate.h"
 #include "../delegates//booleandelegate.h"
+#include "../vehicles/editvehicledialog.h"
 
 
 PartExchangeFrame::PartExchangeFrame(QWidget *parent) :
@@ -39,7 +40,29 @@ void PartExchangeFrame::on_pushButtonView_clicked()
 
 void PartExchangeFrame::on_pushButtonStock_clicked()
 {
+    QModelIndexList selectedRows = ui->tableView->selectionModel()->selectedIndexes();
+    if (selectedRows.empty()) {
+        return;
+    }
 
+    PartExchange pe = PartExchange(
+                ui->tableView->model()->index(selectedRows.at(0).row(), 0).data().toInt(),
+                ui->tableView->model()->index(selectedRows.at(0).row(), 1).data().toString(),
+                ui->tableView->model()->index(selectedRows.at(0).row(), 2).data().toString(),
+                "",
+                0.0,
+                0,
+                0
+    );
+    int vehicle_id {};
+    if (pe.addToStock(ui->tableView->model()->index(selectedRows.at(0).row(), 5).data().toInt(), vehicle_id)) {
+        EditVehicleDialog *evd = new EditVehicleDialog(vehicle_id, this);
+        evd->exec();
+        loadData();
+        on_tableView_clicked(ui->tableView->model()->index(selectedRows.at(0).row(), 0));
+    } else {
+        QMessageBox::critical(this, "Error", "Vehicle not updated");
+    }
 }
 
 
@@ -57,7 +80,6 @@ void PartExchangeFrame::on_pushButtonAuction_clicked()
     } else {
         QMessageBox::critical(this, "Error", "Vehicle not updated");
     }
-
 }
 
 void PartExchangeFrame::loadData()
@@ -92,15 +114,15 @@ void PartExchangeFrame::on_tableView_clicked(const QModelIndex &index)
         ui->pushButtonAuction->setText("Pull From Auction");
         ui->pushButtonStock->setDisabled(true);
     } else {
-        ui->pushButtonAuction->setText("Auction");
+        ui->pushButtonAuction->setText("Send To Auction");
         ui->pushButtonStock->setDisabled(false);
     }
 
     if (index.siblingAtColumn(6).data().toInt() == 1) {
-        ui->pushButtonStock->setText("Pull From Stock");
+        ui->pushButtonStock->setDisabled(true);
         ui->pushButtonAuction->setDisabled(true);
     } else {
-        ui->pushButtonStock->setText("Add To Stock");
+        ui->pushButtonStock->setDisabled(false);
         ui->pushButtonAuction->setDisabled(false);
     }
 }

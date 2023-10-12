@@ -22,6 +22,7 @@ CREATE TABLE `part_exchanges` (
   `sales_id` int(11) DEFAULT NULL,
   `auctioned` tinyint(1) DEFAULT NULL,
   `stocked` tinyint(1) DEFAULT 0,
+  `vehicle_id` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

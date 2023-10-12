@@ -111,7 +111,13 @@ bool Vehicle::save()
         query.addBindValue(id);
     }
 
-    return query.exec();
+    bool executed = query.exec();
+
+    if (executed) {
+        id = query.lastInsertId().toInt();
+    }
+
+    return executed;
 }
 
 bool Vehicle::deleteById()

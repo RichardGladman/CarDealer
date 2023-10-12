@@ -15,6 +15,7 @@ public:
     PartExchange();
 
     bool auction(int auctioned);
+    bool addToStock(int stocked, int &vehicle_id);
 
     int getId() const;
     QString getMake() const;

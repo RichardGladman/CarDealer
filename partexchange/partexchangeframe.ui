@@ -60,13 +60,6 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QPushButton" name="pushButtonView">
-         <property name="text">
-          <string>View</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QPushButton" name="pushButtonStock">
          <property name="text">
           <string>Add To Stock</string>
@@ -75,8 +68,14 @@
        </item>
        <item>
         <widget class="QPushButton" name="pushButtonAuction">
+         <property name="minimumSize">
+          <size>
+           <width>120</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="text">
-          <string>Auction</string>
+          <string>Send To Auction</string>
          </property>
         </widget>
        </item>
