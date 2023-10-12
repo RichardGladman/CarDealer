@@ -10,6 +10,22 @@ CREATE TABLE `customers` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
+-- CarDealer.part_exchanges definition
+
+CREATE TABLE `part_exchanges` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Make` varchar(100) DEFAULT NULL,
+  `Model` varchar(100) DEFAULT NULL,
+  `registration` varchar(100) DEFAULT NULL,
+  `miles` float DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  `sales_id` int(11) DEFAULT NULL,
+  `auctioned` tinyint(1) DEFAULT NULL,
+  `stocked` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
 -- CarDealer.sales definition
 
 CREATE TABLE `sales` (
@@ -51,18 +67,3 @@ CREATE TABLE `vehicles` (
   `name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
--- CarDealer.part_exchanges definition
-
-CREATE TABLE `part_exchanges` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `Make` varchar(100) DEFAULT NULL,
-  `Model` varchar(100) DEFAULT NULL,
-  `registration` varchar(100) DEFAULT NULL,
-  `miles` float DEFAULT NULL,
-  `price` float DEFAULT NULL,
-  `sales_id` int(11) DEFAULT NULL,
-  `auctioned` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
